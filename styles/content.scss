@@ -1,23 +1,56 @@
-.networks {
-  background-color: #999;
-  a {
-    border-radius: 50%;
-    border: 2px solid black;
-    text-align: center;
-    width: 50px;
-    height: 50px;
-    display: table-cell;
-    vertical-align: middle;
-    color:black;
+
+footer {
+  nav {
+    background: transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+
+  &.page-footer {
+    background-color: #444;
+    margin-top:0;
+  }
+}
+
+
+.tools {
+  .btn-large {
+    margin-right: 20px;
+    cursor:default;
+    background-color: #444;
+    width:80px;
+    height:80px;
+
+    svg {
+      margin-top:15px;
+    }
 
     &:hover {
-      border-color: white;
-      color:white;
+      background:black;
+      -moz-transform: scale(2) rotate(360deg) ;
+      -webkit-transform: scale(1.2) rotate(360deg);
+      -o-transform: scale(2) rotate(360deg) ;
+      transform: scale(2) rotate(360deg) ;
+      z-index: 1000;
     }
 
-    .socicon {
-      color: inherit;
-      font-size: 2em;
+  }
+}
+
+.socials {
+  .btn-large {
+    margin-right: 20px;
+    background-color: transparent;
+    width:50px;
+    height:50px;
+
+    svg {
+    }
+
+    &:hover {
+      background-color: black;
     }
   }
+
 }
