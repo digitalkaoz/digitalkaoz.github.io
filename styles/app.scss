@@ -1,8 +1,20 @@
+@charset "UTF-8";
+
 $roboto-font-path: "/build/" !default;
 $dark-grey : #424242;
 
+@import "materialize-css/sass/components/prefixer";
+@import "materialize-css/sass/components/mixins";
+@import "materialize-css/sass/components/color";
+@import "materialize-css/sass/components/variables";
+@import "materialize-css/sass/components/normalize";
+@import "materialize-css/sass/components/global";
+@import "materialize-css/sass/components/grid";
+@import "materialize-css/sass/components/roboto";
+@import "materialize-css/sass/components/typography";
+@import "materialize-css/sass/components/cards";
+@import "materialize-css/sass/components/buttons";
 
-@import "materialize-css/sass/materialize";
 @import 'icons.scss';
 @import 'content.scss';
 
@@ -15,3 +27,7 @@ body {
  main {
   flex: 1 0 auto;
  }
+
+h1 {
+  font-weight:bold;
+}

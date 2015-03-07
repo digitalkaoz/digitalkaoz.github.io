@@ -43,12 +43,8 @@
   margin:15px;
 
   &:hover {
-    -moz-transform: scale(1.5);
-    -webkit-transform: scale(1.5);
-    -o-transform: scale(1.5);
     transform: scale(1.5);
 
-    -webkit-transition-duration: 0.5s;
     transition-duration: 0.5s;
   }
 
@@ -63,6 +59,10 @@
   width:150px;
   height:150px;
   border-radius:50%;
+  &:hover {
+    transform: none;
+  }
+
 }
 .icon {
   fill:white;

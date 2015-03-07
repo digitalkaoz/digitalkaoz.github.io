@@ -11,12 +11,15 @@ var rename = require('gulp-rename');
 var cheerio = require('gulp-cheerio');
 var imagemin = require('gulp-imagemin');
 var minifyHTML = require('gulp-minify-html')
-var minifyCSS = require('gulp-minify-css');
+var minifyCss = require('gulp-minify-css');
 var gzip = require('gulp-gzip');
 var del = require('del');
 var sourcemaps = require('gulp-sourcemaps');
 var buffer = require('vinyl-buffer');
 var sprite = require('css-sprite').stream;
+var autoprefixer = require('gulp-autoprefixer');
+var gulpif = require('gulp-if');
+var argv = require('yargs').argv
 
 var reload = browserSync.reload;
 
@@ -27,7 +30,8 @@ var opts = {
   watchedFiles: [
     './js/**/*',
     './styles/**/*',
-    '_index.html'
+    '_index.html',
+    './images/*'
   ],
   svgSources: [
     './node_modules/devicons/icons/bower/bower-plain-wordmark.svg',
@@ -50,27 +54,9 @@ var opts = {
   ]
 };
 
-function styles(minify) {
-  var stream = gulp.src(opts.mainStylesInput)
-  .pipe(sass({
-    includePaths: ["./node_modules/"]
-  }));
+var debug = !argv.prod;
 
-  if (minify) {
-    return stream
-    .pipe(minifyCSS())
-    .pipe(gulp.dest(opts.buildFolder))
-    ;
-  }
-
-  return stream
-  .pipe(gulp.dest(opts.buildFolder))
-  .pipe(reload({
-    stream: true
-  }))
-}
-
-function scripts(minify) {
+var scripts = function(minify) {
   var b = browserify({
     debug: !minify
   });
@@ -147,11 +133,26 @@ gulp.task('svg', function() {
 });
 
 gulp.task('styles', ['sprite'], function() {
-  return styles(false);
+  var stream = gulp.src(opts.mainStylesInput)
+  //.pipe(gulpif(debug, sourcemaps.init()))
+  .pipe(sass({
+    includePaths: ["./node_modules/"]
+  }))
+  //.pipe(gulpif(debug, sourcemaps.write()))
+  .pipe(autoprefixer({
+    browsers: ['last 2 versions'],
+    cascade: false
+  }))
+  .pipe(gulpif(!debug, minifyCss()))
+  .pipe(gulp.dest(opts.buildFolder))
+  .pipe(reload({
+    stream: true
+  }))
+
 });
 
 gulp.task('images', function() {
-  return gulp.src('./images/*')
+  return gulp.src('./images/*.jpg')
   .pipe(imagemin({}))
   .pipe(gulp.dest(opts.buildFolder))
 });
@@ -162,7 +163,28 @@ gulp.task('fonts', function() {
 });
 
 gulp.task('js', function() {
-  return scripts(false);
+  var b = browserify({
+    debug: debug
+  });
+  b.transform(reactify);
+  b.add(opts.mainJsInput);
+
+  if (!debug) {
+    b.plugin('minifyify', {
+      map: false
+    });
+  }
+
+  return b.bundle()
+  .pipe(source(opts.mainJsInput))
+  .pipe(rename("app.js"))
+  .pipe(buffer())
+  .pipe(gulpif(debug, sourcemaps.init({
+    loadMaps: true
+  })))
+  .pipe(gulpif(debug, sourcemaps.write(opts.buildFolder)))
+  .pipe(gulp.dest(opts.buildFolder));
+
 });
 
 gulp.task('sprite', function() {
@@ -184,11 +206,10 @@ gulp.task('browser-sync', function() {
   });
 });
 
-gulp.task('build', ['clean', 'svg', 'images', 'fonts'], function() {
-  styles(true);
+gulp.task('build', ['clean', 'svg', 'images', 'fonts', 'js', 'styles'], function() {
   scripts(true);
 });
 
 gulp.task('default', ['svg', 'images', 'fonts', 'styles', 'js', 'browser-sync'], function() {
-  gulp.watch(opts.watchedFiles, ['svg', 'styles', 'js', browserSync.reload]);
+  gulp.watch(opts.watchedFiles, ['svg', 'images', 'styles', 'js', browserSync.reload]);
 });

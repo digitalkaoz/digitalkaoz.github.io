@@ -2,8 +2,6 @@
 footer {
   nav {
     background: transparent;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
     box-shadow: none;
   }
 
@@ -28,9 +26,6 @@ footer {
 
     &:hover {
       background:black;
-      -moz-transform: scale(2) rotate(360deg) ;
-      -webkit-transform: scale(1.2) rotate(360deg);
-      -o-transform: scale(2) rotate(360deg) ;
       transform: scale(2) rotate(360deg) ;
       z-index: 1000;
     }
@@ -53,4 +48,8 @@ footer {
     }
   }
 
+}
+
+.parallax img {
+  background-size: cover;
 }
