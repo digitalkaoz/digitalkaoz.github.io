@@ -11,7 +11,7 @@ function ready(fn) {
 }
 
 ready(function() {
-  new IScroll(document.querySelector('main'), {
+  new IScroll(document.body, {
     mouseWheel: true
   });
   parallax.init(document.querySelectorAll('.parallax'));
