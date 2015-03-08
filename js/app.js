@@ -1,5 +1,5 @@
 //var React = require('react');
-var IScroll = require('IScroll');
+//var IScroll = require('IScroll');
 var parallax = require('./parallax.js');
 
 function ready(fn) {
