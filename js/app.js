@@ -11,9 +11,8 @@ function ready(fn) {
 }
 
 ready(function() {
-  /*new IScroll(document.querySelector('main'), {
-    preventDefault: false,
-    click : true
-  });*/
+  new IScroll(document.querySelector('main'), {
+    mouseWheel: true
+  });
   parallax.init(document.querySelectorAll('.parallax'));
 });

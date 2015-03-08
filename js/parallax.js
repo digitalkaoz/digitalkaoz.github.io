@@ -34,12 +34,6 @@ var parallax = (function() {
       updateParallax(item, false);
     });
 
-    window.addEventListener('gesturechange', function() {});
-    window.addEventListener('touchmove', function() {
-      window_width = getWindowSize.width;
-      updateParallax(item, false);
-    });
-
     window.addEventListener('resize', function() {
       window_width = getWindowSize.width;
       updateParallax(item, false);
