@@ -14,5 +14,6 @@ ready(function() {
   new IScroll(document.body, {
     mouseWheel: true
   });
+  document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
   parallax.init(document.querySelectorAll('.parallax'));
 });
