@@ -1,55 +1,44 @@
-
 footer {
-  nav {
-    background: transparent;
-    box-shadow: none;
-  }
-
-  &.page-footer {
-    background-color: $dark-grey;
-    margin-top:0;
-  }
+    nav {
+        background: transparent;
+        box-shadow: none;
+    }
+    &.page-footer {
+        background-color: $dark-grey;
+        margin-top: 0;
+    }
 }
-
-
 .tools {
-  .btn-large {
-    margin-right: 15px;
-    cursor:default;
-    background-color: $dark-grey;
-    width:80px;
-    height:80px;
-
-    svg {
-      margin-top:15px;
+    .btn-large {
+        margin-right: 15px;
+        cursor: default;
+        background-color: $dark-grey;
+        width: 80px;
+        height: 80px;
+        svg {
+            margin-top: 15px;
+        }
+        &:hover {
+            background: black;
+            transform: scale(2) rotate(360deg);
+            z-index: 1000;
+        }
     }
-
-    &:hover {
-      background:black;
-      transform: scale(2) rotate(360deg) ;
-      z-index: 1000;
-    }
-
-  }
 }
-
 .socials {
-  .btn-large {
-    margin-right: 20px;
-    background-color: transparent;
-    width:50px;
-    height:50px;
+    .btn-large {
+        margin-right: 20px;
+        background-color: transparent;
+        width: 50px;
+        height: 50px;
+        svg {
 
-    svg {
+        }
+        &:hover {
+            background-color: #ffab40;
+        }
     }
-
-    &:hover {
-      background-color: #ffab40;
-    }
-  }
-
 }
-
 .parallax img {
-  background-size: cover;
+    background-size: cover;
 }

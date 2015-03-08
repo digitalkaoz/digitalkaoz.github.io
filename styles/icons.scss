@@ -1,78 +1,70 @@
 @import '_base64';
-
 // camera icon (camera.png in src directory)
 .icon-gruner {
-  @include sprite($gruner_und_jahr);
+    @include sprite($gruner_und_jahr);
 }
 .icon-collins {
-  @include sprite($collins);
+    @include sprite($collins);
 }
 .icon-blg {
-  @include sprite($blg);
+    @include sprite($blg);
 }
 .icon-curved {
-  @include sprite($curved);
+    @include sprite($curved);
 }
 .icon-expert {
-  @include sprite($expert);
+    @include sprite($expert);
 }
 .icon-dasaundo {
-  @include sprite($dasaundo);
+    @include sprite($dasaundo);
 }
 .icon-commerce_plus {
-  @include sprite($commerce_plus);
+    @include sprite($commerce_plus);
 }
 .icon-tchibo {
-  @include sprite($tchibo);
+    @include sprite($tchibo);
 }
 .icon-gala {
-  @include sprite($gala);
+    @include sprite($gala);
 }
 .icon-sinnerschrader {
-  @include sprite($sinnerschrader);
+    @include sprite($sinnerschrader);
 }
 .icon-about_you {
-  @include sprite($about_you);
+    @include sprite($about_you);
 }
 .icon-truventuro {
-  @include sprite($truventuro);
+    @include sprite($truventuro);
 }
-
 .reference {
-  float:left;
-  margin:15px;
-
-  &:hover {
-    transform: scale(1.5);
-
-    transition-duration: 0.5s;
-  }
-
+    float: left;
+    margin: 15px;
+    &:hover {
+        transform: scale(1.5);
+        transition-duration: 0.5s;
+    }
 }
-
 .icon-me {
-  display:block;
-  float:none;
-  margin:0 auto;
-  @include sprite($me);
-  border:3px solid black;
-  width:150px;
-  height:150px;
-  border-radius:50%;
-  &:hover {
-    transform: none;
-  }
-
+    display: block;
+    float: none;
+    margin: 0 auto;
+    @include sprite($me);
+    border: 3px solid black;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    &:hover {
+        transform: none;
+    }
 }
 .icon {
-  fill:white;
-  width:50px;
-  height:50px;
+    fill: white;
+    width: 50px;
+    height: 50px;
 }
-
 .heart {
-  fill:black;
-  width:30px;
-  height:30px;
-  margin: 0 5px;
+    fill: black;
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
 }

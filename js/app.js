@@ -27,13 +27,14 @@ function offset(elt) {
   return {
     top: rect.top + bodyElt .scrollTop,
     left: rect.left + bodyElt .scrollLeft
-  }
+  };
 }
 
 function getHeight(elem) {
   return Math.max(elem.offsetHeight, elem.clientHeight);
 }
 
+// vanilla js port of materialize/parallax
 function parallax(query) {
   var window_width = getWindowSize.width;
 
@@ -92,8 +93,8 @@ function parallax(query) {
     });
   });
 }
-;
 
 ready(function() {
   parallax('.parallax');
 });
+
