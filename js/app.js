@@ -11,6 +11,8 @@ function ready(fn) {
 }
 
 ready(function() {
-  new IScroll(document.querySelector('main'));
+  new IScroll(document.querySelector('main'), {
+    tap: true
+  });
   parallax.init(document.querySelectorAll('.parallax'));
 });
