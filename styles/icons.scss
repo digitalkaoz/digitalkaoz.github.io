@@ -36,6 +36,9 @@
 .icon-truventuro {
     @include sprite($truventuro);
 }
+.icon-silpion {
+    @include sprite($silpion);
+}
 .reference {
     float: left;
     margin: 15px;

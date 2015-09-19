@@ -49,6 +49,10 @@ var opts = {
     './node_modules/devicons/icons/symfony/*-original-wordmark.svg',
     './node_modules/devicons/icons/apple/*.svg',
     './node_modules/devicons/icons/html5/*-plain-wordmark.svg',
+    './node_modules/devicons/icons/docker/*-plain-wordmark.svg',
+    './node_modules/devicons/icons/travis/*-plain-wordmark.svg',
+    './node_modules/devicons/icons/redis/*-plain-wordmark.svg',
+    './node_modules/devicons/icons/doctrine/*-plain-wordmark.svg',
     './images/*.svg'
   ]
 };
