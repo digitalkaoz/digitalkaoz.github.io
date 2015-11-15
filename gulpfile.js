@@ -15,7 +15,7 @@ var minifyCss = require('gulp-minify-css');
 var del = require('del');
 var sourcemaps = require('gulp-sourcemaps');
 var buffer = require('vinyl-buffer');
-var sprite = require('css-sprite').stream;
+var sprity = require('sprity');
 var autoprefixer = require('gulp-autoprefixer');
 var gulpif = require('gulp-if');
 var argv = require('yargs').argv
@@ -33,26 +33,26 @@ var opts = {
     './images/*'
   ],
   svgSources: [
-    './node_modules/devicons/icons/bower/bower-plain-wordmark.svg',
-    './node_modules/devicons/icons/bootstrap/*-plain-wordmark.svg',
-    './node_modules/devicons/icons/linux/*-plain.svg',
-    './node_modules/devicons/icons/git/*-plain-wordmark.svg',
-    './node_modules/devicons/icons/gulp/*.svg',
-    './node_modules/devicons/icons/javascript/*-plain.svg',
-    './node_modules/devicons/icons/less/*.svg',
-    './node_modules/devicons/icons/mongodb/*-plain-wordmark.svg',
-    './node_modules/devicons/icons/mysql/*-plain-wordmark.svg',
-    './node_modules/devicons/icons/nodejs/*-plain-wordmark.svg',
-    './node_modules/devicons/icons/php/*-plain.svg',
-    './node_modules/devicons/icons/react/*-original-wordmark.svg',
-    './node_modules/devicons/icons/sass/*.svg',
-    './node_modules/devicons/icons/symfony/*-original-wordmark.svg',
-    './node_modules/devicons/icons/apple/*.svg',
-    './node_modules/devicons/icons/html5/*-plain-wordmark.svg',
-    './node_modules/devicons/icons/docker/*-plain-wordmark.svg',
-    './node_modules/devicons/icons/travis/*-plain-wordmark.svg',
-    './node_modules/devicons/icons/redis/*-plain-wordmark.svg',
-    './node_modules/devicons/icons/doctrine/*-plain-wordmark.svg',
+    './node_modules/devicon/icons/yii/*-plain-wordmark.svg',
+    './node_modules/devicon/icons/bootstrap/*-plain-wordmark.svg',
+    './node_modules/devicon/icons/linux/*-plain.svg',
+    './node_modules/devicon/icons/git/*-plain-wordmark.svg',
+    './node_modules/devicon/icons/gulp/*.svg',
+    './node_modules/devicon/icons/javascript/*-plain.svg',
+    './node_modules/devicon/icons/less/*.svg',
+    './node_modules/devicon/icons/mongodb/*-plain-wordmark.svg',
+    './node_modules/devicon/icons/mysql/*-plain-wordmark.svg',
+    './node_modules/devicon/icons/nodejs/*-plain-wordmark.svg',
+    './node_modules/devicon/icons/php/*-plain.svg',
+    './node_modules/devicon/icons/react/*-original-wordmark.svg',
+    './node_modules/devicon/icons/sass/*.svg',
+    './node_modules/devicon/icons/symfony/*-original-wordmark.svg',
+    './node_modules/devicon/icons/html5/*-plain-wordmark.svg',
+    './node_modules/devicon/icons/docker/*-plain-wordmark.svg',
+    './node_modules/devicon/icons/travis/*-plain-wordmark.svg',
+    './node_modules/devicon/icons/redis/*-plain-wordmark.svg',
+    './node_modules/devicon/icons/doctrine/*-plain-wordmark.svg',
+    './node_modules/devicon/icons/angularjs/*-plain-wordmark.svg',
     './images/*.svg'
   ]
 };
@@ -191,14 +191,24 @@ gulp.task('js', function() {
 });
 
 gulp.task('sprite', function() {
-  return gulp.src(['./images/references/*', './images/me.png'])
+  return sprity.src({
+    src: ['./images/references/*', './images/me.png'],
+    base64: true,
+    style: '_base64.scss',
+//    cssPath: '../styles',
+    processor: 'sass', 
+    prefix: 'reference'
+  })
+  .pipe(gulp.dest('./styles'));
+  
+/*  return gulp.src(['./images/references/*', './images/me.png'])
   .pipe(sprite({
     base64: true,
     style: '_base64.scss',
-    processor: 'scss',
+    processor: 'sass',
     prefix: 'reference'
   }))
-  .pipe(gulp.dest('./styles'));
+  .pipe(gulp.dest('./styles'));*/
 });
 
 gulp.task('browser-sync', function() {
