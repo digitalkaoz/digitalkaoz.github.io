@@ -3,7 +3,7 @@
   "dependencies": {
     "devicon": "^2.0.0",
     "iscroll": "^5.1.3",
-    "materialize-css": "^0.97",
+    "materialize-css": "^0.97.4",
     "react": "^0.14"
   },
   "devDependencies": {
