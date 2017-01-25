@@ -39,6 +39,12 @@
 .icon-silpion {
     @include sprite($silpion);
 }
+.icon-otto {
+    @include sprite($otto);
+}
+.icon-mediamarkt {
+    @include sprite($mediamarkt);
+}
 .reference {
     float: left;
     margin: 15px;

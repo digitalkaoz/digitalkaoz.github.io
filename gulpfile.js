@@ -10,15 +10,16 @@ var inject = require('gulp-inject');
 var rename = require('gulp-rename');
 var cheerio = require('gulp-cheerio');
 var imagemin = require('gulp-imagemin');
-var minifyHTML = require('gulp-minify-html')
-var minifyCss = require('gulp-minify-css');
+var minifyHTML = require('gulp-minify-html');
 var del = require('del');
 var sourcemaps = require('gulp-sourcemaps');
 var buffer = require('vinyl-buffer');
 var sprity = require('sprity');
 var autoprefixer = require('gulp-autoprefixer');
 var gulpif = require('gulp-if');
-var argv = require('yargs').argv
+var argv = require('yargs').argv;
+var csso = require('gulp-csso');
+var uncss = require('gulp-uncss');
 
 var reload = browserSync.reload;
 
@@ -33,26 +34,29 @@ var opts = {
     './images/*'
   ],
   svgSources: [
-    './node_modules/devicon/icons/yii/*-plain-wordmark.svg',
-    './node_modules/devicon/icons/bootstrap/*-plain-wordmark.svg',
+    './node_modules/devicon/icons/yii/*-plain.svg',
     './node_modules/devicon/icons/linux/*-plain.svg',
-    './node_modules/devicon/icons/git/*-plain-wordmark.svg',
+    './node_modules/devicon/icons/git/*-plain.svg',
     './node_modules/devicon/icons/gulp/*.svg',
     './node_modules/devicon/icons/javascript/*-plain.svg',
     './node_modules/devicon/icons/less/*.svg',
-    './node_modules/devicon/icons/mongodb/*-plain-wordmark.svg',
-    './node_modules/devicon/icons/mysql/*-plain-wordmark.svg',
-    './node_modules/devicon/icons/nodejs/*-plain-wordmark.svg',
+    './node_modules/devicon/icons/mongodb/*-plain.svg',
+    './node_modules/devicon/icons/mysql/*-plain.svg',
+    './node_modules/devicon/icons/nodejs/*-plain.svg',
     './node_modules/devicon/icons/php/*-plain.svg',
-    './node_modules/devicon/icons/react/*-original-wordmark.svg',
+    './node_modules/devicon/icons/react/*-original.svg',
     './node_modules/devicon/icons/sass/*.svg',
-    './node_modules/devicon/icons/symfony/*-original-wordmark.svg',
-    './node_modules/devicon/icons/html5/*-plain-wordmark.svg',
-    './node_modules/devicon/icons/docker/*-plain-wordmark.svg',
-    './node_modules/devicon/icons/travis/*-plain-wordmark.svg',
-    './node_modules/devicon/icons/redis/*-plain-wordmark.svg',
-    './node_modules/devicon/icons/doctrine/*-plain-wordmark.svg',
-    './node_modules/devicon/icons/angularjs/*-plain-wordmark.svg',
+    './node_modules/devicon/icons/symfony/*-original.svg',
+    './node_modules/devicon/icons/html5/*-plain.svg',
+    './node_modules/devicon/icons/docker/*-plain.svg',
+    './node_modules/devicon/icons/travis/*-plain.svg',
+    './node_modules/devicon/icons/redis/*-plain.svg',
+    './node_modules/devicon/icons/doctrine/*-plain.svg',
+    './node_modules/devicon/icons/angularjs/*-plain.svg',
+    './node_modules/devicon/icons/github/*-original.svg',
+    './node_modules/devicon/icons/google/*-plain.svg',
+    './node_modules/devicon/icons/nginx/*-original.svg',
+    './node_modules/devicon/icons/java/*-plain.svg',
     './images/*.svg'
   ]
 };
@@ -93,50 +97,46 @@ gulp.task('clean', function(cb) {
 
 gulp.task('svg', function() {
   var svgs = gulp
-  .src(opts.svgSources)
-  .pipe(cheerio({
-    run: function($) {
-      $('[fill]').removeAttr('fill');
-    },
-    parserOptions: {
-      xmlMode: true
+    .src(opts.svgSources)
+    .pipe(cheerio({
+        run: function($) {
+            $('[fill]').removeAttr('fill');
+        },
+        parserOptions: {
+            xmlMode: true
+        }
+    }))
+
+    .pipe(rename(function(path) {
+      path.prefix = "icon-";
+      path.basename = path.basename.replace('-plain-wordmark', '')
+        .replace('-original-wordmark', '')
+        .replace('-plain', '')
+        .replace('-original', '')
+      ;
     }
-  }))
-  .pipe(rename(function(path) {
-    path.prefix = "icon-";
-    path.basename = path.basename.replace('-plain-wordmark', '');
-    path.basename = path.basename.replace('-original-wordmark', '');
-    path.basename = path.basename.replace('-plain', '');
-    path.basename = path.basename.replace('-original', '');
-  }
-  ))
-  .pipe(svgmin())
-  .pipe(svgstore({
-    inlineSvg: true
-  }))
-  .pipe(cheerio(function($) {
-    $('svg').attr('style', 'display:none');
-  }))
+    ))
+    .pipe(svgmin())
+    .pipe(svgstore({
+      inlineSvg: true
+    }))
   ;
 
-  function fileContents(filePath, file) {
-    return file.contents.toString();
+  function fileContents (filePath, file) {
+      return file.contents.toString();
   }
 
   return gulp
-  .src('./_index.html')
-  .pipe(minifyHTML({
-    comments: true
-  }))
-  .pipe(inject(svgs, {
-    transform: fileContents
-  }))
-  .pipe(rename("index.html"))
-  .pipe(gulp.dest('.'));
+    .src('./_index.html')
+    .pipe(rename("index.html"))
+    .pipe(inject(svgs, { transform: fileContents }))
+    .pipe(minifyHTML())
+    .pipe(gulp.dest('.'))
+  ;
 });
 
 gulp.task('styles', ['sprite'], function() {
-  var stream = gulp.src(opts.mainStylesInput)
+  gulp.src(opts.mainStylesInput)
   //.pipe(gulpif(debug, sourcemaps.init()))
   .pipe(sass({
     includePaths: ["./node_modules/"]
@@ -146,7 +146,14 @@ gulp.task('styles', ['sprite'], function() {
     browsers: ['last 2 versions'],
     cascade: false
   }))
-  .pipe(gulpif(!debug, minifyCss()))
+  .pipe(uncss({
+      html: ['_index.html']
+  }))
+  .pipe(csso({
+      restructure: true,
+      sourceMap: true,
+      debug: debug
+  }))
   .pipe(gulp.dest(opts.buildFolder))
   .pipe(reload({
     stream: true
@@ -161,7 +168,7 @@ gulp.task('images', function() {
 });
 
 gulp.task('fonts', function() {
-  return gulp.src('./node_modules/materialize-css/font/roboto/*')
+  return gulp.src('./node_modules/materialize-css/fonts/roboto/*')
   .pipe(gulp.dest(opts.buildFolder))
 });
 
@@ -200,15 +207,6 @@ gulp.task('sprite', function() {
     prefix: 'reference'
   })
   .pipe(gulp.dest('./styles'));
-  
-/*  return gulp.src(['./images/references/*', './images/me.png'])
-  .pipe(sprite({
-    base64: true,
-    style: '_base64.scss',
-    processor: 'sass',
-    prefix: 'reference'
-  }))
-  .pipe(gulp.dest('./styles'));*/
 });
 
 gulp.task('browser-sync', function() {
