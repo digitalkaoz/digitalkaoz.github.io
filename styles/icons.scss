@@ -45,6 +45,9 @@
 .icon-mediamarkt {
     @include sprite($mediamarkt);
 }
+.icon-contentfleet {
+    @include sprite($contentfleet);
+}
 .reference {
     float: left;
     margin: 15px;
