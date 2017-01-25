@@ -5,8 +5,8 @@
 ## Installation
 
 ```bash
-$ npm install
-$ gulp
+$ yarn install
+$ yarn start
 ```
 
 ## Environments
@@ -14,5 +14,5 @@ $ gulp
 run this to build a production version
 
 ```bash
-$ gulp build --prod
+$ yarg build
 ```
