@@ -2,7 +2,7 @@
   "private": true,
   "dependencies": {
     "devicon": "https://github.com/konpa/devicon/archive/master.tar.gz",
-    "materialize-css": "^0.97.7"
+    "materialize-css": "^0.98.0"
   },
   "devDependencies": {
     "browser-sync": "^2.17.0",
