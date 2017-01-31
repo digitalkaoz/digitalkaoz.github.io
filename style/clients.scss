@@ -1,0 +1,19 @@
+@import "variables";
+
+#clients {
+  a {
+    display: block;
+    width:100%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100px;
+    filter: grayscale(100%);
+
+    &:hover {
+        filter: grayscale(0) drop-shadow(5px 5px 15px $color-background);
+        transition-duration: .2s;
+    }
+
+  }
+}

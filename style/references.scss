@@ -1,0 +1,15 @@
+#references {
+  @media (max-width: 479px) {
+    .repo-card .header {
+      height:50px;
+    }
+  }
+
+  .medium-theme, .github-card, .header, .content {
+    width: 100%;
+  }
+
+  .github-card .header h1{
+    font-size: 24px;
+  }
+}
