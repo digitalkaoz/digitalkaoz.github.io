@@ -42,6 +42,6 @@
     "dev": "webpack-dev-server",
     "cs": "standard --fix js/**/*.jsx",
     "build": "rm -rf build/* && webpack --colors --config=webpack.build.js",
-    "deploy": "cd build && git add --all && cd - && git commit -m='release' && git push origin master"
+    "deploy": "cd build && git add --all && cd - && git commit -m 'release' && git push origin master"
   }
 }
