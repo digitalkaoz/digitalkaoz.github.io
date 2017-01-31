@@ -4,7 +4,6 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const PurifyCssPlugin = require("purifycss-webpack-plugin");
 const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
-//const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const buildDir = path.resolve(__dirname, 'build');
 
@@ -18,7 +17,6 @@ module.exports = {
         library: 'digitalkaoz',
         libraryTarget: 'umd'
     },
-    //optimizeMinimize: true,
     module: {
         loaders: [
             {
@@ -128,7 +126,6 @@ module.exports = {
                 rejected: false
             }
         }),
-        //new UglifyJSPlugin(),
         new StaticSiteGeneratorPlugin('main', ['/'], {}),
         new webpack.DefinePlugin({
             'process.env': {

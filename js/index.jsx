@@ -14,11 +14,11 @@ class Html extends React.Component {
             <title>digitalkaoz.net</title>
             <meta name="viewport" content="width=device-width, initial-scale=1"/>
             <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css"/>
-            <link rel="stylesheet" href="/main.css"/>
+            <link rel="stylesheet" href="/build/main.css"/>
         </head>
         <body>
         <div id="root"><App /></div>
-        <script async defer src="/bundle.js"></script>
+        <script async defer src="/build/bundle.js"></script>
         </body>
         </html>
     }
