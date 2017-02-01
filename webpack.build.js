@@ -51,7 +51,7 @@ module.exports = {
             {
                 test: /.*\.(gif|png|jpe?g)$/i,
                 loaders: [
-                    'url-loader',
+                    'file-loader',
                     {
                         loader: 'image-webpack-loader',
                         query: {
@@ -67,13 +67,6 @@ module.exports = {
                             pngquant: {
                                 quality: '75-90',
                                 speed: 3,
-                            },
-                            svgo:{
-                                plugins: [
-                                    {
-                                        removeViewBox: false
-                                    }
-                                ]
                             }
                         },
                     }

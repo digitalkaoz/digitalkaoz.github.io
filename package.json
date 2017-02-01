@@ -41,7 +41,7 @@
   "scripts": {
     "dev": "webpack-dev-server",
     "cs": "standard --fix js/**/*.jsx",
-    "build": "rm -rf build/* && webpack --colors --config=webpack.build.js",
+    "build": "rm -rf build/*.* && webpack --colors --config=webpack.build.js",
     "deploy": "yarn build && cd build && git add --all && cd - && git subtree push --prefix build origin master"
   }
 }
