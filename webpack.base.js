@@ -58,7 +58,7 @@ export default {
                 use: {
                     loader: 'babel-loader',
                     query: {
-                        cacheDirectory: "./build",
+                        cacheDirectory: true,
                     }
 
                 },
