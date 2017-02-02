@@ -20,7 +20,7 @@ module.exports = {
         libraryTarget: 'umd'
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /.jsx?$/,
                 loader: {
@@ -122,11 +122,11 @@ module.exports = {
             }
         }),
         new StaticSiteGeneratorPlugin('main', ['/'], {}),
-        new webpack.DefinePlugin({
+        /*new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify('production')
             }
-        }),
+        }),*/
         new ManifestPlugin(),
         new ResourceHintWebpackPlugin(),
         new webpack.optimize.UglifyJsPlugin()

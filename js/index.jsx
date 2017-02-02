@@ -1,43 +1,34 @@
 import React from 'react';
-import { render } from 'react-dom';
-import { renderToString } from 'react-dom/server';
+import Document from './components/Document.jsx';
 
-import App from './components/App.jsx';
-
-class Html extends React.Component {
-    render() {
-        return <html lang="en">
-        <head>
-            <meta charSet="utf-8"/>
-            <title>digitalkaoz.net</title>
-            <meta name="viewport" content="width=device-width, initial-scale=1"/>
-            <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css"/>
-            <link rel="stylesheet" href="/main.css"/>
-            <link rel="manifest" href="/manifest.json" />
-        </head>
-        <body>
-        <App />
-        <script async defer src="/bundle.js"></script>
-        </body>
-        </html>
-    }
-}
-
-
-// Client render (optional):
+const font = 'http://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
+// Client Rendering
 if (typeof document !== 'undefined') {
-     render(<Html/>, document);
+    const Dom = require('react-dom');
+    const App = require('./components/App.jsx').default;
+
+    Dom.render(<App />, document.getElementById('app'));
 }
 
-// Exported static site renderer:
 export default (locals, callback) => {
-    const html = '<!DOCTYPE html>'+ renderToString(<Html {...locals} />);
+    const Server = require('react-dom/server');
+    const prefix = '<!DOCTYPE html>';
 
-    //server side rendering
+    // Serverside Rendering
     if ('function' === typeof callback) {
-        callback(null, html);
+        const App = require('./components/App.jsx').default;
+        const styles = [
+            font,
+            '/main.css'
+        ];
+
+        const scripts = [
+            '/bundle.js'
+        ];
+
+        callback(null, prefix + Server.renderToString(<Document app={<App />} scripts={ scripts } styles={ styles }/>));
     } else {
-        //html-webpack-plugin
-        return html;
+        // Build-Time Rendering
+        return prefix + Server.renderToStaticMarkup(<Document styles={[font]} />);
     }
 };

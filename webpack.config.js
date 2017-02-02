@@ -19,7 +19,7 @@ module.exports = {
     devServer: {
         hot: false,
         colors: true,
-        stats: { colors: true },
+        stats: {colors: true},
         //open: true,
         watch: true,
         port: 7777,
@@ -30,7 +30,19 @@ module.exports = {
 
     },
     module: {
-        loaders: [
+        rules: [
+            {
+                test: /\.scss$/,
+                oneOf: [
+                    {test: /html-webpack-plugin/, use: "null-loader"},
+                    {
+                        use: ExtractTextPlugin.extract({
+                            fallbackLoader: 'style-loader',
+                            loader: ['css-loader', 'sass-loader']
+                        })
+                    }
+                ]
+            },
             {
                 test: /.jsx?$/,
                 loader: {
@@ -53,14 +65,6 @@ module.exports = {
                 },
             },
             {
-                test: /\.scss$/,
-                //loaders: ['css-loader', 'sass-loader']
-                loader: ExtractTextPlugin.extract({
-                     fallbackLoader: 'style-loader',
-                     loader: ['css-loader', 'sass-loader']
-                 })
-            },
-            {
                 //test: /.*\.(gif|png|jpe?g|svg)$/i,
                 test: /.*\.(gif|png|jpe?g)$/i,
                 loaders: [
@@ -70,7 +74,7 @@ module.exports = {
             },
             {
                 test: /\.svg$/,
-                loaders: [ 'babel-loader',
+                loaders: ['babel-loader',
                     {
                         loader: 'react-svg-loader',
                         query: {
@@ -85,11 +89,11 @@ module.exports = {
                                     {removeStyleElement: true},
                                     // {cleanupAttrs: true},
                                     // {removeUselessDefs: true},
-                                     //{removeEmptyAttrs: true},
-                                     //{removeHiddenElems: true},
-                                     // {cleanupEnableBackground: true},
-                                     // {removeUnknownsAndDefaults: true},
-                                     // {removeEmptyContainers: true},
+                                    //{removeEmptyAttrs: true},
+                                    //{removeHiddenElems: true},
+                                    // {cleanupEnableBackground: true},
+                                    // {removeUnknownsAndDefaults: true},
+                                    // {removeEmptyContainers: true},
                                     // {removeUselessStrokeAndFill: true},
                                     //  {transformsWithOnePath: true},
                                 ],
@@ -101,6 +105,7 @@ module.exports = {
             }
         ]
     },
+
     plugins: [
         //new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
