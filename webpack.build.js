@@ -4,6 +4,8 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const PurifyCssPlugin = require("purifycss-webpack-plugin");
 const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
+const ResourceHintWebpackPlugin = require('resource-hints-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 const buildDir = path.resolve(__dirname, 'build');
 
@@ -125,6 +127,8 @@ module.exports = {
                 NODE_ENV: JSON.stringify('production')
             }
         }),
+        new ManifestPlugin(),
+        new ResourceHintWebpackPlugin(),
         new webpack.optimize.UglifyJsPlugin()
     ]
 };

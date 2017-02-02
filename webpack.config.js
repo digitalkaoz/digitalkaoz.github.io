@@ -2,11 +2,13 @@ const path = require('path');
 const glob = require('glob');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 const buildDir = path.resolve(__dirname, 'build');
 
 module.exports = {
-    entry: ["react-hot-loader/patch", './js/index.jsx'],
+    entry: ['./js/index.jsx'],
     output: {
         filename: 'bundle.js',
         path: buildDir
@@ -52,10 +54,11 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
+                //loaders: ['css-loader', 'sass-loader']
                 loader: ExtractTextPlugin.extract({
-                    fallbackLoader: 'style-loader',
-                    loader: ['css-loader', 'sass-loader']
-                })
+                     fallbackLoader: 'style-loader',
+                     loader: ['css-loader', 'sass-loader']
+                 })
             },
             {
                 //test: /.*\.(gif|png|jpe?g|svg)$/i,
@@ -99,7 +102,12 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new ExtractTextPlugin('[name].css'),
+        //new webpack.HotModuleReplacementPlugin(),
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: './js/index.jsx',
+        }),
+        new ManifestPlugin(),
+        new ExtractTextPlugin({filename: '[name].css', allChunks: true}),
     ]
 };
