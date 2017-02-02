@@ -10,7 +10,9 @@
     "react-parallax": "^1.2.2"
   },
   "devDependencies": {
+    "babel-cli": "^6.22.2",
     "babel-core": "^6.22.1",
+    "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
     "babel-plugin-transform-class-properties": "^6.22.0",
     "babel-plugin-transform-runtime": "^6.22.0",
@@ -41,9 +43,9 @@
     "webpack-manifest-plugin": "^1.1.0"
   },
   "scripts": {
-    "dev": "webpack-dev-server",
-    "cs": "standard --fix js/**/*.jsx",
-    "build": "rm -rf build/*.* && webpack --colors --config=webpack.build.js",
+    "dev": "babel-node ./node_modules/.bin/webpack-dev-server  --config=./webpack.dev.js --progress",
+    "cs": "standard --fix js/**/*.jsx -v --parser babel-eslint",
+    "build": "rm -rf build/*.* && babel-node ./node_modules/.bin/webpack --colors --config=webpack.build.js",
     "deploy": "yarn build && cd build && git add --all && cd - && git subtree push --prefix build origin master"
   }
 }

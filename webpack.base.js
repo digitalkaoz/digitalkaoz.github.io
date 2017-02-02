@@ -1,26 +1,30 @@
-const path = require('path');
-const glob = require('glob');
-const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
+import path from 'path';
+import ExtractTextPlugin from './js/webpack/extract-text';
+//TODO readd if https://github.com/webpack-contrib/extract-text-webpack-plugin/pull/390 resolved
+//import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import ManifestPlugin from 'webpack-manifest-plugin';
 
 const buildDir = path.resolve(__dirname, 'build');
 
-module.exports = {
+export default {
     entry: ['./js/index.jsx'],
     output: {
         filename: 'bundle.js',
+        library: 'digitalkaoz',
         path: buildDir
     },
 
-    devtool: 'inline-source-map',
+    devtool: 'eval',
+    target: 'web',
 
     devServer: {
         hot: false,
         colors: true,
-        stats: {colors: true},
-        //open: true,
+        stats: {
+            modules: false,
+            chunkModules: false,
+            colors: true,
+        },
         watch: true,
         port: 7777,
         inline: true,
@@ -33,19 +37,14 @@ module.exports = {
         rules: [
             {
                 test: /\.scss$/,
-                oneOf: [
-                    {test: /html-webpack-plugin/, use: "null-loader"},
-                    {
-                        use: ExtractTextPlugin.extract({
-                            fallbackLoader: 'style-loader',
-                            loader: ['css-loader', 'sass-loader']
-                        })
-                    }
-                ]
+                use: ExtractTextPlugin.extract({
+                    fallbackLoader: 'style-loader',
+                    loader: [/*'isomorphic-style-loader',*/ 'css-loader', 'sass-loader']
+                })
             },
             {
                 test: /.jsx?$/,
-                loader: {
+                use: {
                     loader: 'babel-loader',
                     query: {
                         cacheDirectory: true
@@ -56,7 +55,7 @@ module.exports = {
             },
             {
                 test: /react-github-cards\/src\/themes\/medium\/index\.js$/,
-                loader: {
+                use: {
                     loader: 'babel-loader',
                     query: {
                         cacheDirectory: "./build",
@@ -65,16 +64,15 @@ module.exports = {
                 },
             },
             {
-                //test: /.*\.(gif|png|jpe?g|svg)$/i,
                 test: /.*\.(gif|png|jpe?g)$/i,
-                loaders: [
+                use: [
                     'file-loader',
                     'image-webpack-loader',
                 ]
             },
             {
                 test: /\.svg$/,
-                loaders: ['babel-loader',
+                use: ['babel-loader',
                     {
                         loader: 'react-svg-loader',
                         query: {
@@ -87,15 +85,15 @@ module.exports = {
                                     // {convertStyleToAttrs: true},
                                     {convertColors: true},
                                     {removeStyleElement: true},
-                                    // {cleanupAttrs: true},
-                                    // {removeUselessDefs: true},
-                                    //{removeEmptyAttrs: true},
-                                    //{removeHiddenElems: true},
-                                    // {cleanupEnableBackground: true},
-                                    // {removeUnknownsAndDefaults: true},
-                                    // {removeEmptyContainers: true},
-                                    // {removeUselessStrokeAndFill: true},
-                                    //  {transformsWithOnePath: true},
+                                     {cleanupAttrs: true},
+                                     {removeUselessDefs: true},
+                                    {removeEmptyAttrs: true},
+                                    {removeHiddenElems: true},
+                                     {cleanupEnableBackground: true},
+                                     {removeUnknownsAndDefaults: true},
+                                     {removeEmptyContainers: true},
+                                     {removeUselessStrokeAndFill: true},
+                                    //{transformsWithOnePath: true},
                                 ],
                                 floatPrecision: 2
                             }
@@ -107,12 +105,7 @@ module.exports = {
     },
 
     plugins: [
-        //new webpack.HotModuleReplacementPlugin(),
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: './js/index.jsx',
-        }),
         new ManifestPlugin(),
-        new ExtractTextPlugin({filename: '[name].css', allChunks: true}),
+        new ExtractTextPlugin({filename: '[name].css', allChunks: true})
     ]
 };
