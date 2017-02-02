@@ -2,7 +2,6 @@
   "private": true,
   "dependencies": {
     "devicon": "https://github.com/konpa/devicon/archive/master.tar.gz",
-
     "material-design-lite": "^1.3.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
@@ -11,7 +10,9 @@
     "react-parallax": "^1.2.2"
   },
   "devDependencies": {
+    "babel-cli": "^6.22.2",
     "babel-core": "^6.22.1",
+    "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
     "babel-plugin-transform-class-properties": "^6.22.0",
     "babel-plugin-transform-runtime": "^6.22.0",
@@ -21,13 +22,15 @@
     "css-loader": "^0.26.1",
     "eslint": "^3.14.1",
     "eslint-plugin-react": "^6.9.0",
-    "extract-text-webpack-plugin": "^2.0.0-beta",
+    "extract-text-webpack-plugin": "^2.0.0-rc",
+    "html-webpack-plugin": "^2.28.0",
     "image-webpack-loader": "^3.2.0",
     "isomorphic-style-loader": "^1.1.0",
     "node-sass": "^4.5.0",
     "purifycss-webpack-plugin": "^2.0.3",
     "react-hot-loader": "^3.0.0-beta.6",
     "react-svg-loader": "^2.0.0-alpha.0",
+    "resource-hints-webpack-plugin": "^0.0.1",
     "sass-loader": "^4.1.1",
     "standard": "^8.6.0",
     "static-site-generator-webpack-plugin": "^3.1.0",
@@ -36,12 +39,13 @@
     "uglifyjs-webpack-plugin": "^0.1.2",
     "url-loader": "^0.5.7",
     "webpack": "beta",
-    "webpack-dev-server": "^1.16.2"
+    "webpack-dev-server": "^1.16.2",
+    "webpack-manifest-plugin": "^1.1.0"
   },
   "scripts": {
-    "dev": "webpack-dev-server",
-    "cs": "standard --fix js/**/*.jsx",
-    "build": "rm -rf build/*.* && webpack --colors --config=webpack.build.js",
+    "dev": "babel-node ./node_modules/.bin/webpack-dev-server  --config=./webpack.dev.js --progress",
+    "cs": "standard --fix js/**/*.jsx -v --parser babel-eslint",
+    "build": "rm -rf build/*.* && babel-node ./node_modules/.bin/webpack --colors --config=webpack.build.js",
     "deploy": "yarn build && cd build && git add --all && cd - && git subtree push --prefix build origin master"
   }
 }
