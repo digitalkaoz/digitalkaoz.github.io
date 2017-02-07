@@ -1,5 +1,4 @@
 import webpack from "webpack";
-import HtmlWebpackPlugin from "html-webpack-plugin";
 import baseConfig from "./webpack.base";
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
@@ -37,14 +36,6 @@ export default {
             'process.env': {
                 NODE_ENV: JSON.stringify('development'),
             },
-        }),
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: './js/index.jsx',
-            minify: {
-                removeComments: true,
-                collapseWhitespace: true,
-            }
         }),
         ...baseConfig.plugins
     ]

@@ -1,11 +1,36 @@
 {
   "presets": [
-    ["es2015"],
+    [
+      "es2015"
+    ],
     "react",
     "stage-0"
   ],
   "plugins": [
     "transform-runtime",
-    ["transform-class-properties", { "spec": true }]
-  ]
+    "transform-react-constant-elements",
+    "transform-react-inline-elements",
+    [
+      "transform-class-properties",
+      {
+        "spec": true
+      }
+    ]
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+        "transform-runtime",
+        "transform-react-constant-elements",
+        "transform-react-inline-elements",
+        "transform-react-remove-prop-types",
+        [
+          "transform-class-properties",
+          {
+            "spec": true
+          }
+        ]
+      ],
+    }
+  }
 }

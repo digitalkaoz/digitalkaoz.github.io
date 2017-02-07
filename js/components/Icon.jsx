@@ -1,16 +1,15 @@
 import React from 'react'
 import './../../style/icon.scss'
 
-export default class extends React.Component {
+const Icon = ({icon, name}) => {
+    const className = name ? 'icon-' + name : '';
 
-  static defaultProps = {
-    icon: null,
-    name: null
-  };
-
-  render () {
-    const name = this.props.name ? 'icon-' + this.props.name : ''
-
-    return React.createElement(this.props.icon, {className: 'icon ' + name})
-  }
+    return React.createElement(icon, {className: 'icon ' + className})
 }
+
+Icon.propTypes = {
+    icon: React.PropTypes.func,
+    name: React.PropTypes.string
+};
+
+export default Icon;

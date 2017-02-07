@@ -11,6 +11,12 @@ footer {
       position: absolute;
       top: -2px;
       left: -2px;
+
+      &:hover {
+        g {
+          fill: $color-accent;
+        }
+      }
     }
 
     &.icon-mail {
@@ -28,5 +34,9 @@ footer {
       margin-top:6px;
       margin-left:-6px;
     }
+  }
+
+  &.mdl-mini-footer .mdl-logo {
+    line-height:55px;
   }
 }

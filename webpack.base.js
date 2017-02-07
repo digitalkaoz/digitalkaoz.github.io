@@ -1,45 +1,61 @@
+import webpack from 'webpack';
+
 import path from 'path';
 import ExtractTextPlugin from './js/webpack/extract-text';
 //TODO readd if https://github.com/webpack-contrib/extract-text-webpack-plugin/pull/390 resolved
 //import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import ManifestPlugin from 'webpack-manifest-plugin';
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin';
+import PreloadWebpackPlugin from 'preload-webpack-plugin';
 
 const buildDir = path.resolve(__dirname, 'build');
 
 export default {
-    entry: ['./js/index.jsx'],
+    entry: {
+        main: './js/index.jsx',
+        vendor: ['react', 'react-dom', 'react-headroom', 'react-parallax', 'react-github-cards/dist/medium'/*, 'material-design-lite', 'devicon'*/]
+    },
     output: {
-        filename: 'bundle.js',
+        filename: '[name].[hash].js',
         library: 'digitalkaoz',
         path: buildDir
     },
 
-    devtool: 'eval',
+    devtool: '#eval',
     target: 'web',
 
     devServer: {
         hot: false,
-        colors: true,
         stats: {
             modules: false,
             chunkModules: false,
             colors: true,
         },
-        watch: true,
         port: 7777,
+        serverSideRender: true,
         inline: true,
-        progress: true,
         historyApiFallback: true,
         contentBase: path.resolve(__dirname)
 
     },
+    resolve: {
+        alias: {
+            'react': path.resolve(__dirname, 'node_modules/react'),
+            'react-dom': path.resolve(__dirname, 'node_modules/react-dom')
+        }
+    },
     module: {
         rules: [
+            // {
+            //     test: /\.(ttf|eot|svg|woff)(\?[\-a-zA-Z0-9]*)?$/,
+            //     use: "file-loader"
+            // },
             {
-                test: /\.scss$/,
+                test: /\.s?css$/,
                 use: ExtractTextPlugin.extract({
-                    fallbackLoader: 'style-loader',
-                    loader: [/*'isomorphic-style-loader',*/ 'css-loader', 'sass-loader']
+                    fallback: 'style-loader',
+                    use: [/*'isomorphic-style-loader',*/ 'css-loader', 'sass-loader']
                 })
             },
             {
@@ -53,16 +69,16 @@ export default {
                 },
                 exclude: /node_modules/
             },
-            {
-                test: /react-github-cards\/src\/themes\/medium\/index\.js$/,
-                use: {
-                    loader: 'babel-loader',
-                    query: {
-                        cacheDirectory: true,
-                    }
-
-                },
-            },
+            // {
+            //     test: /react-github-cards\/src\/themes\/medium\/index\.js$/,
+            //     use: {
+            //         loader: 'babel-loader',
+            //         query: {
+            //             cacheDirectory: true,
+            //         }
+            //
+            //     },
+            // },
             {
                 test: /.*\.(gif|png|jpe?g)$/i,
                 use: [
@@ -105,7 +121,24 @@ export default {
     },
 
     plugins: [
+        new ExtractTextPlugin({filename: '[name].[hash].css', allChunks: true}),
+        new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: '[name].[hash].js' }),
+        //new VendorChunkPlugin('vendor'),
         new ManifestPlugin(),
-        new ExtractTextPlugin({filename: '[name].css', allChunks: true})
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: './js/index.jsx',
+            alwaysWriteToDisk: false,
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+            }
+        }),
+        new PreloadWebpackPlugin({
+            rel: 'preload',
+            as: 'script',
+            include: 'all'
+        }),
+        new HtmlWebpackHarddiskPlugin(),
     ]
 };
