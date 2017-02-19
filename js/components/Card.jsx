@@ -1,16 +1,17 @@
 import React from 'react'
 
-import { RepoCard } from 'react-github-cards/src/themes/medium/index'
+import { RepoCard } from 'react-github-cards/dist/medium'
+import 'react-github-cards/dist/medium.css'
 
-// import './../../style/index.scss';
+const Card = ({repo}) => {
+  return <RepoCard
+      username='digitalkaoz'
+      repo={repo}
+      clientId='41ef156b7d2ac5277f4a'
+      clientSecret='72b94076f8dbc32ee37cfa344b94f70e0c1567c9'
+  />
+};
 
-export default class extends React.Component {
+Card.propTypes = { repo: React.PropTypes.string };
 
-  static defaultProps = {
-    repo: null
-  };
-
-  render () {
-    return <RepoCard username='digitalkaoz' repo={this.props.repo} clientId='41ef156b7d2ac5277f4a' clientSecret='72b94076f8dbc32ee37cfa344b94f70e0c1567c9' />
-  }
-}
+export default Card;

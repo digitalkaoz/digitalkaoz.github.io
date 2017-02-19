@@ -1,8 +1,5 @@
 import webpack from 'webpack';
 import PurifyCssPlugin from 'purifycss-webpack-plugin';
-import StaticSiteGeneratorPlugin from 'static-site-generator-webpack-plugin'
-import ResourceHintWebpackPlugin from 'resource-hints-webpack-plugin'
-
 import baseConfig from './webpack.base';
 
 export default {
@@ -12,6 +9,8 @@ export default {
         ...baseConfig.output,
         libraryTarget: 'umd'
     },
+
+    devtool: '#cheap-module-source-map',
 
     module: {
         rules: [
@@ -43,11 +42,17 @@ export default {
     },
 
     plugins: [
-        ...baseConfig.plugins,
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify('production')
             }
+        }),
+        ...baseConfig.plugins.map((plugin) => {
+            if (plugin.hasOwnProperty('options') && plugin.options.hasOwnProperty('alwaysWriteToDisk')) {
+                plugin.options.alwaysWriteToDisk = true;
+            }
+
+            return plugin;
         }),
         new PurifyCssPlugin({
             basePath: __dirname,
@@ -62,6 +67,7 @@ export default {
             }
         }),
         new webpack.optimize.UglifyJsPlugin({
+            sourceMap: false,
             compress: {
                 warnings: false,
                 screw_ie8: true,
@@ -70,7 +76,5 @@ export default {
                 comments: false,
             }
         }),
-        new StaticSiteGeneratorPlugin('main', ['/'], {}),
-        new ResourceHintWebpackPlugin()
     ]
 }

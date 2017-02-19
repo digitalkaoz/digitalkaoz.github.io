@@ -1,15 +1,4 @@
 import React from 'react';
-import Document from './components/Document.jsx';
-
-const font = 'http://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
-const styles = [
-    font,
-    '/main.css'
-];
-
-const scripts = [
-    '/bundle.js'
-];
 
 // Client Rendering
 if (typeof document !== 'undefined') {
@@ -19,18 +8,18 @@ if (typeof document !== 'undefined') {
     Dom.render(<App />, document.getElementById('app'));
 }
 
+// Serverside Rendering
 export default (locals, callback) => {
     const Server = require('react-dom/server');
-    const prefix = '<!DOCTYPE html>';
+    const Document = require('./components/Document.jsx').default;
 
-    // Serverside Rendering
-    if ('function' === typeof callback) {
+    let app = null;
+
+    if (true === locals['htmlWebpackPlugin'].options.alwaysWriteToDisk) {
+        //dump react app into file too in case of prod build
         const App = require('./components/App.jsx').default;
-        const app = Server.renderToString(<App />);
-
-        callback(null, prefix + Server.renderToStaticMarkup(<Document app={ app } scripts={ scripts } styles={ styles }/>));
-    } else {
-        // Build-Time Rendering
-        return prefix + Server.renderToStaticMarkup(<Document styles={[font]} />);
+        app = Server.renderToString(<App />);
     }
+
+    return '<!DOCTYPE html>' + Server.renderToStaticMarkup(<Document app={ app } />);
 };

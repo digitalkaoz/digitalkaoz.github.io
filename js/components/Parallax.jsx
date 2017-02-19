@@ -7,7 +7,15 @@ export default class extends React.Component {
     file: null
   };
 
+  static propTypes = {
+      file: React.PropTypes.string
+  };
+
   render () {
-    return <div className='mdl-grid mdl-grid--no-spacing'><div className='mdl-cell mdl-cell--12-col mdl-cell--hide-phone'><Parallax strength={400} bgImage={this.props.file} /></div></div>
+    return <div className='mdl-grid mdl-grid--no-spacing'>
+      <div className='mdl-cell mdl-cell--12-col mdl-cell--hide-phone'>
+        <Parallax strength={400} bgImage={this.props.file} />
+      </div>
+    </div>
   }
 }
