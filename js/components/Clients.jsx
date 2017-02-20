@@ -18,7 +18,7 @@ import sinnerschrader from './../../images/references/sinnerschrader.png'
 import tchibo from './../../images/references/tchibo.png'
 import truventuro from './../../images/references/truventuro.png'
 
-export default class extends React.Component {
+export default class Clients extends React.Component {
 
   static defaultProps = {
     clients: [
@@ -38,6 +38,10 @@ export default class extends React.Component {
             {img: truventuro, url: 'http://www.truventuro.de'},
             {img: tchibo, url: 'https://www.tchibo.de'}
     ]
+  };
+
+  static propTypes = {
+    clients: React.PropTypes.arrayOf(React.PropTypes.object)
   };
 
   renderClient (client) {

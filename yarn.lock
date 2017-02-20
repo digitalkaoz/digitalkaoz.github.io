@@ -945,6 +945,13 @@ babel-runtime@^6.18.0, babel-runtime@^6.22.0:
     core-js "^2.4.0"
     regenerator-runtime "^0.10.0"
 
+babel-runtime@^6.23.0:
+  version "6.23.0"
+  resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.23.0.tgz#0a9489f144de70efb3ce4300accdb329e2fc543b"
+  dependencies:
+    core-js "^2.4.0"
+    regenerator-runtime "^0.10.0"
+
 babel-template@^6.22.0, babel-template@^6.23.0:
   version "6.23.0"
   resolved "https://registry.yarnpkg.com/babel-template/-/babel-template-6.23.0.tgz#04d4f270adbb3aa704a8143ae26faa529238e638"
@@ -1839,7 +1846,7 @@ deglob@^2.0.0:
     run-parallel "^1.1.2"
     uniq "^1.0.1"
 
-del@^2.0.2:
+del@^2.0.2, del@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/del/-/del-2.2.2.tgz#c12c981d067846c84bcaf862cff930d907ffd1a8"
   dependencies:
@@ -1911,6 +1918,12 @@ dom-serializer@0:
   dependencies:
     domelementtype "~1.1.1"
     entities "~1.1.1"
+
+dom-urls@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/dom-urls/-/dom-urls-1.1.0.tgz#001ddf81628cd1e706125c7176f53ccec55d918e"
+  dependencies:
+    urijs "^1.16.1"
 
 domain-browser@^1.1.1:
   version "1.1.7"
@@ -2108,6 +2121,10 @@ es6-map@^0.1.3:
     es6-symbol "~3.1.0"
     event-emitter "~0.3.4"
 
+es6-promise@^4.0.5:
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-4.0.5.tgz#7882f30adde5b240ccfa7f7d78c548330951ae42"
+
 es6-set@~0.1.3:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/es6-set/-/es6-set-0.1.4.tgz#9516b6761c2964b92ff479456233a247dc707ce8"
@@ -2184,9 +2201,9 @@ eslint-plugin-standard@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-standard/-/eslint-plugin-standard-2.0.1.tgz#3589699ff9c917f2c25f76a916687f641c369ff3"
 
-eslint@^3.15.0:
-  version "3.15.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-3.15.0.tgz#bdcc6a6c5ffe08160e7b93c066695362a91e30f2"
+eslint@^3.16.0:
+  version "3.16.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-3.16.0.tgz#4a468ab93618a9eb6e3f1499038b38851f828630"
   dependencies:
     babel-code-frame "^6.16.0"
     chalk "^1.1.3"
@@ -2790,7 +2807,7 @@ glob@^6.0.4:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@~7.1.1:
+glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@^7.1.1, glob@~7.1.1:
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.1.tgz#805211df04faaf1c63a3600306cdf5ade50b2ec8"
   dependencies:
@@ -3675,7 +3692,7 @@ lodash._reevaluate@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/lodash._reevaluate/-/lodash._reevaluate-3.0.0.tgz#58bc74c40664953ae0b124d806996daca431e2ed"
 
-lodash._reinterpolate@^3.0.0:
+lodash._reinterpolate@^3.0.0, lodash._reinterpolate@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
 
@@ -3694,6 +3711,10 @@ lodash.camelcase@^4.3.0:
 lodash.clonedeep@^4.3.2:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
+
+lodash.defaults@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/lodash.defaults/-/lodash.defaults-4.2.0.tgz#d09178716ffea4dde9e5fb7b37f6f0802274580c"
 
 lodash.escape@^3.0.0:
   version "3.2.0"
@@ -3759,12 +3780,25 @@ lodash.template@^3.0.0:
     lodash.restparam "^3.0.0"
     lodash.templatesettings "^3.0.0"
 
+lodash.template@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/lodash.template/-/lodash.template-4.4.0.tgz#e73a0385c8355591746e020b99679c690e68fba0"
+  dependencies:
+    lodash._reinterpolate "~3.0.0"
+    lodash.templatesettings "^4.0.0"
+
 lodash.templatesettings@^3.0.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/lodash.templatesettings/-/lodash.templatesettings-3.1.1.tgz#fb307844753b66b9f1afa54e262c745307dba8e5"
   dependencies:
     lodash._reinterpolate "^3.0.0"
     lodash.escape "^3.0.0"
+
+lodash.templatesettings@^4.0.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/lodash.templatesettings/-/lodash.templatesettings-4.1.0.tgz#2b4d4e95ba440d915ff08bc899e4553666713316"
+  dependencies:
+    lodash._reinterpolate "~3.0.0"
 
 lodash.uniq@^4.3.0:
   version "4.5.0"
@@ -4372,6 +4406,12 @@ path-to-regexp@0.1.7:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-0.1.7.tgz#df604178005f522f15eb4490e7247a1bfaa67f8c"
 
+path-to-regexp@^1.0.1:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-1.7.0.tgz#59fde0f435badacba103a84e9d3bc64e96b9937d"
+  dependencies:
+    isarray "0.0.1"
+
 path-type@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-1.1.0.tgz#59c44f7ee491da704da415da5a4070ba4f8fe441"
@@ -4698,6 +4738,12 @@ preserve@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
+pretty-bytes@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/pretty-bytes/-/pretty-bytes-3.0.1.tgz#27d0008d778063a0b4811bb35c79f1bd5d5fbccf"
+  dependencies:
+    number-is-nan "^1.0.0"
+
 pretty-error@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/pretty-error/-/pretty-error-2.0.2.tgz#a7db19cbb529ca9f0af3d3a2f77d5caf8e5dec23"
@@ -4851,9 +4897,13 @@ react-dom@^15.4.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
 
-react-github-cards@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/react-github-cards/-/react-github-cards-1.1.0.tgz#dc1b8957cbb8d31dd898fa0d60e2b7a6da16c670"
+react-github-cards@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-github-cards/-/react-github-cards-1.1.1.tgz#a56bf911867a5b2714635210e37a4775bc8f94e2"
+  dependencies:
+    babel-runtime "^6.23.0"
+    react "^15.4.2"
+    react-dom "^15.4.2"
 
 react-headroom@^2.1.3:
   version "2.1.3"
@@ -4862,9 +4912,9 @@ react-headroom@^2.1.3:
     raf "^3.3.0"
     shallowequal "^0.2.2"
 
-react-parallax@^1.2.5:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/react-parallax/-/react-parallax-1.2.5.tgz#b363686ea87c9423e0cfbccf423d7627365bd89d"
+react-parallax@^1.2.6:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/react-parallax/-/react-parallax-1.2.6.tgz#7595d990c729af1b1701135af9bee0841868ed1c"
 
 react-svg-loader@^2.0.0-alpha.0:
   version "2.0.0-alpha.1"
@@ -5265,6 +5315,10 @@ serve-static@~1.11.2:
     parseurl "~1.3.1"
     send "0.14.2"
 
+serviceworker-cache-polyfill@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/serviceworker-cache-polyfill/-/serviceworker-cache-polyfill-4.0.0.tgz#de19ee73bef21ab3c0740a37b33db62464babdeb"
+
 set-blocking@^2.0.0, set-blocking@~2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/set-blocking/-/set-blocking-2.0.0.tgz#045f9782d011ae9a6803ddd382b24392b3d890f7"
@@ -5641,6 +5695,35 @@ svgo@^0.7.0, svgo@^0.7.2:
     sax "~1.2.1"
     whet.extend "~0.9.9"
 
+sw-precache-webpack-plugin@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/sw-precache-webpack-plugin/-/sw-precache-webpack-plugin-0.9.0.tgz#50625d0ef6346bd6704f55849c18081ad0bf34f3"
+  dependencies:
+    del "^2.2.2"
+    sw-precache "^4.3.0"
+    uglify-js "^2.7.4"
+
+sw-precache@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/sw-precache/-/sw-precache-4.3.0.tgz#576c6c1c23b61c44ef5d84d33870641060d8c2de"
+  dependencies:
+    dom-urls "^1.1.0"
+    es6-promise "^4.0.5"
+    glob "^7.1.1"
+    lodash.defaults "^4.2.0"
+    lodash.template "^4.4.0"
+    meow "^3.7.0"
+    mkdirp "^0.5.1"
+    pretty-bytes "^3.0.1"
+    sw-toolbox "^3.4.0"
+
+sw-toolbox@^3.4.0:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/sw-toolbox/-/sw-toolbox-3.5.1.tgz#99cbd5783a37a271ce514fd4c3022144b3169052"
+  dependencies:
+    path-to-regexp "^1.0.1"
+    serviceworker-cache-polyfill "^4.0.0"
+
 table@^3.7.8:
   version "3.8.3"
   resolved "https://registry.yarnpkg.com/table/-/table-3.8.3.tgz#2bbc542f0fda9861a755d3947fefd8b3f513855f"
@@ -5811,7 +5894,7 @@ ua-parser-js@^0.7.9:
   version "0.7.12"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.12.tgz#04c81a99bdd5dc52263ea29d24c6bf8d4818a4bb"
 
-uglify-js@2.7.x, uglify-js@^2.7.5:
+uglify-js@2.7.x, uglify-js@^2.7.4, uglify-js@^2.7.5:
   version "2.7.5"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.7.5.tgz#4612c0c7baaee2ba7c487de4904ae122079f2ca8"
   dependencies:
@@ -5824,9 +5907,9 @@ uglify-to-browserify@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/uglify-to-browserify/-/uglify-to-browserify-1.0.2.tgz#6e0924d6bda6b5afe349e39a6d632850a0f882b7"
 
-uglifyjs-webpack-plugin@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/uglifyjs-webpack-plugin/-/uglifyjs-webpack-plugin-0.2.0.tgz#b40346de3ecf5da8a42b261852f185b4c3121b50"
+uglifyjs-webpack-plugin@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/uglifyjs-webpack-plugin/-/uglifyjs-webpack-plugin-0.2.1.tgz#01f5b0b4c731b599002377b56bab7791339b54e9"
   dependencies:
     source-map "^0.5.6"
     webpack-sources "^0.1.4"
@@ -5876,6 +5959,10 @@ unzip-response@^1.0.2:
 upper-case@^1.1.1:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/upper-case/-/upper-case-1.1.3.tgz#f6b4501c2ec4cdd26ba78be7222961de77621598"
+
+urijs@^1.16.1:
+  version "1.18.7"
+  resolved "https://registry.yarnpkg.com/urijs/-/urijs-1.18.7.tgz#613ee4194452fe66b872d62468946df93a941492"
 
 urix@^0.1.0, urix@~0.1.0:
   version "0.1.0"
@@ -6079,9 +6166,9 @@ webpack-dev-middleware@^1.9.0:
     path-is-absolute "^1.0.0"
     range-parser "^1.0.3"
 
-webpack-dev-server@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/webpack-dev-server/-/webpack-dev-server-2.4.0.tgz#1dba2f57a7b253d62b4f7c5d0cc48e74b9953236"
+webpack-dev-server@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/webpack-dev-server/-/webpack-dev-server-2.4.1.tgz#48556f793186eac0758df94730c034ed9a4d0f12"
   dependencies:
     ansi-html "0.0.7"
     chokidar "^1.6.0"

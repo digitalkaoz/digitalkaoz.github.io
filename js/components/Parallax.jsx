@@ -8,7 +8,7 @@ export default class extends React.Component {
   };
 
   static propTypes = {
-      file: React.PropTypes.string
+    file: React.PropTypes.string
   };
 
   render () {

@@ -6,12 +6,27 @@ import Header from './Header.jsx'
 import Main from './Main.jsx'
 import Footer from './Footer.jsx'
 
-const App = () => {
-  return <div className='mdl-layout mdl-js-layout'>
-    <Header />
-    <Main />
-    <Footer />
-  </div>
-}
+export default class App extends React.Component {
 
-export default App
+  componentDidMount () {
+    if (
+            typeof document === 'object' &&
+            typeof window === 'object' &&
+            'serviceWorker' in navigator
+        ) {
+      window.addEventListener('load', _ => {
+        navigator.serviceWorker.register('service-worker.js').catch(_ => {
+                    // darn failed
+        })
+      })
+    }
+  }
+
+  render () {
+    return <div className='mdl-layout mdl-js-layout'>
+      <Header />
+      <Main />
+      <Footer />
+    </div>
+  }
+}
