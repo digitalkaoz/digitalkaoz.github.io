@@ -33,7 +33,7 @@
     "preload-webpack-plugin": "^1.1.0",
     "purifycss-webpack-plugin": "^2.0.3",
     "react-svg-loader": "^2.0.0-alpha.0",
-    "sass-loader": "^6.0.1",
+    "sass-loader": "^6.0.2",
     "standard": "^8.6.0",
     "style-loader": "^0.13.1",
     "uglifyjs-webpack-plugin": "^0.2.1",
