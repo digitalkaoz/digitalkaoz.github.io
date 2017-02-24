@@ -7,8 +7,9 @@ import heart from './../../images/heart.svg'
 import Icon from './Icon.jsx'
 
 const Header = () => {
-  return <header className='mdl-layout__header mdl-layout__header--transparent'>
-    <Headroom>
+  return <header>
+    <Headroom >
+      <div className='mdl-layout__header mdl-layout__header--transparent'>
       <div className='mdl-layout__header-row mdl-layout__header--waterfall'>
         <div className='mdl-layout-spacer' />
         <nav className='mdl-navigation'>
@@ -17,6 +18,7 @@ const Header = () => {
           <a className='mdl-navigation__link' href='#references'>References</a>
           <a className='mdl-navigation__link' href='#contact'>Contact</a>
         </nav>
+      </div>
       </div>
     </Headroom>
 
