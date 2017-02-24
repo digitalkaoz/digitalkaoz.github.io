@@ -46,6 +46,6 @@
     "dev": "babel-node ./node_modules/.bin/webpack-dev-server  --config=./webpack.dev.js",
     "cs": "standard --fix js/**/*.jsx -v --parser babel-eslint",
     "build": "rm -rf build/*.* && babel-node ./node_modules/.bin/webpack --colors --config=webpack.build.js  --progress",
-    "deploy": "yarn build && cd build && git add --all && cd - && git subtree push --prefix build origin master"
+    "deploy": "docker build -t \"digitalkaoz.net\" build && docker tag \"digitalkaoz.net\" digitalkaoz/digitalkaoz.net:$(git rev-parse --verify HEAD) && docker push digitalkaoz/digitalkaoz.net:$(git rev-parse --verify HEAD)"
   }
 }
