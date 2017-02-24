@@ -10,15 +10,15 @@ const Header = () => {
   return <header>
     <Headroom >
       <div className='mdl-layout__header mdl-layout__header--transparent'>
-      <div className='mdl-layout__header-row mdl-layout__header--waterfall'>
-        <div className='mdl-layout-spacer' />
-        <nav className='mdl-navigation'>
-          <a className='mdl-navigation__link' href='#tools'>Tools</a>
-          <a className='mdl-navigation__link' href='#clients'>Clients</a>
-          <a className='mdl-navigation__link' href='#references'>References</a>
-          <a className='mdl-navigation__link' href='#contact'>Contact</a>
-        </nav>
-      </div>
+        <div className='mdl-layout__header-row mdl-layout__header--waterfall'>
+          <div className='mdl-layout-spacer' />
+          <nav className='mdl-navigation'>
+            <a className='mdl-navigation__link' href='#tools'>Tools</a>
+            <a className='mdl-navigation__link' href='#clients'>Clients</a>
+            <a className='mdl-navigation__link' href='#references'>References</a>
+            <a className='mdl-navigation__link' href='#contact'>Contact</a>
+          </nav>
+        </div>
       </div>
     </Headroom>
 
