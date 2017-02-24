@@ -69,16 +69,6 @@ export default {
                 },
                 exclude: /node_modules/
             },
-            // {
-            //     test: /react-github-cards\/src\/themes\/medium\/index\.js$/,
-            //     use: {
-            //         loader: 'babel-loader',
-            //         query: {
-            //             cacheDirectory: true,
-            //         }
-            //
-            //     },
-            // },
             {
                 test: /.*\.(gif|png|jpe?g)$/i,
                 use: [
@@ -123,7 +113,6 @@ export default {
     plugins: [
         new ExtractTextPlugin({filename: '[name].[hash].css', allChunks: true}),
         new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: '[name].[hash].js' }),
-        //new VendorChunkPlugin('vendor'),
         new ManifestPlugin(),
         new HtmlWebpackPlugin({
             filename: 'index.html',
