@@ -1,6 +1,7 @@
 import webpack from 'webpack';
 import PurifyCssPlugin from 'purifycss-webpack-plugin';
 import baseConfig from './webpack.base';
+import SWPrecacheWebpackPlugin from 'sw-precache-webpack-plugin';
 
 export default {
     ...baseConfig,
@@ -86,5 +87,15 @@ export default {
                 comments: false,
             }
         }),
+        new SWPrecacheWebpackPlugin(
+            {
+                cacheId: 'digitalkaoz.net',
+                filename: 'service-worker.js',
+                //maximumFileSizeToCacheInBytes: 4194304,
+                minify: true,
+                mergeStaticsConfig: true,
+                staticFileGlobsIgnorePatterns: [/\.map$/]
+            }
+        ),
     ]
 }

@@ -6,7 +6,7 @@ const Document = ({app}) => {
       <meta charSet='utf-8' />
       <title>digitalkaoz.net</title>
       <meta name='viewport' content='width=device-width, initial-scale=1' />
-      <link rel='preload' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700' as='style' />
+      <link rel='preload' href='//fonts.googleapis.com/css?family=Roboto:300,400,500,700' as='style' />
       <link rel='manifest' href='/manifest.json' />
     </head>
     <body>
