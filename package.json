@@ -47,6 +47,6 @@
     "dev": "babel-node ./node_modules/.bin/webpack-dev-server  --config=./webpack.dev.js",
     "cs": "standard --fix js/**/*.jsx -v --parser babel-eslint",
     "build": "rm -rf build/*.* && babel-node ./node_modules/.bin/webpack --colors --config=webpack.build.js  --progress",
-    "deploy": "docker build -t \"digitalkaoz.net\" . -f docker/Dockerfile && docker tag \"digitalkaoz.net\" digitalkaoz/digitalkaoz.net:$(git rev-parse --verify HEAD) && docker push digitalkaoz/digitalkaoz.net:$(git rev-parse --verify HEAD)"
+    "deploy": "docker build -t \"digitalkaoz.net\" . -f docker/Dockerfile && docker tag \"digitalkaoz.net\" digitalkaoz/digitalkaoz.net:$(git rev-parse --verify HEAD) && docker tag \"digitalkaoz.net\" digitalkaoz/digitalkaoz.net:latest && docker push digitalkaoz/digitalkaoz.net:$(git rev-parse --verify HEAD) && docker push digitalkaoz/digitalkaoz.net:latest"
   }
 }
