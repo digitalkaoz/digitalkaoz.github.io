@@ -7,7 +7,6 @@ import Main from './Main.jsx'
 import Footer from './Footer.jsx'
 
 export default class App extends React.Component {
-
   componentDidMount () {
     if (
             typeof document === 'object' &&

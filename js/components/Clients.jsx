@@ -19,7 +19,6 @@ import tchibo from './../../images/references/tchibo.png'
 import truventuro from './../../images/references/truventuro.png'
 
 export default class Clients extends React.Component {
-
   static defaultProps = {
     clients: [
             {img: aboutYou, url: 'https://www.aboutyou.de'},

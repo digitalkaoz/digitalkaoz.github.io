@@ -2,7 +2,6 @@ import React from 'react'
 import { Parallax } from 'react-parallax'
 
 export default class extends React.Component {
-
   static defaultProps = {
     file: null
   };
