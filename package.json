@@ -36,7 +36,7 @@
     "sass-loader": "^6.0.2",
     "standard": "^9.0.0",
     "style-loader": "^0.13.1",
-    "sw-precache-webpack-plugin": "^0.9.0",
+    "sw-precache-webpack-plugin": "^0.9.1",
     "uglifyjs-webpack-plugin": "^0.3.0",
     "url-loader": "^0.5.8",
     "webpack": "beta",
