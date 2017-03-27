@@ -39,7 +39,8 @@ References.defaultProps = {
     'yuml-php',
     'versioneye-php',
     'xml-filter',
-    'digitalkaoz.github.io'
+    'digitalkaoz.github.io',
+    'time-calc'
   ]
 }
 

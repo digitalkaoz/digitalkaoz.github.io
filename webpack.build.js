@@ -26,7 +26,7 @@ export default {
                             ...rule.use,
                             {
                                 loader: 'image-webpack-loader',
-                                query: {
+                                options: {
                                     mozjpeg: {
                                         quality: 75,
                                     },

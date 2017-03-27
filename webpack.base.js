@@ -2,7 +2,7 @@ import webpack from 'webpack';
 
 import path from 'path';
 import ExtractTextPlugin from './js/webpack/extract-text';
-//TODO readd if https://github.com/webpack-contrib/extract-text-webpack-plugin/pull/390 resolved
+//TODO re-add if https://github.com/webpack-contrib/extract-text-webpack-plugin/pull/390 resolved
 //import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import ManifestPlugin from 'webpack-manifest-plugin';
 import HtmlWebpackPlugin from "html-webpack-plugin";
@@ -62,7 +62,7 @@ export default {
                 test: /.jsx?$/,
                 use: {
                     loader: 'babel-loader',
-                    query: {
+                    options: {
                         cacheDirectory: true
                     }
 
@@ -73,7 +73,10 @@ export default {
                 test: /.*\.(gif|png|jpe?g)$/i,
                 use: [
                     'file-loader',
-                    'image-webpack-loader',
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {}
+                    }
                 ]
             },
             {
@@ -81,7 +84,7 @@ export default {
                 use: ['babel-loader',
                     {
                         loader: 'react-svg-loader',
-                        query: {
+                        options: {
                             es5: false,
                             jsx: true,
                             svgo: {
