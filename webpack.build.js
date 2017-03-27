@@ -76,7 +76,7 @@ export default {
                 minify: true,
                 info: true,
                 rejected: false,
-                whitelist: ['medium-theme*']
+                whitelist: ['*medium-theme*', '*github-card*']
             }
         }),
         new webpack.optimize.UglifyJsPlugin({
