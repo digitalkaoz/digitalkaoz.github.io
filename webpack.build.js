@@ -68,8 +68,10 @@ export default {
             return plugin;
         }),
         new PurifyCssPlugin({
+            styleExtensions: ['.scss', '.css'],
             paths: glob.sync(path.join(__dirname, '/js/**/*.jsx')),
             minimize: true,
+            verbose: true,
             purifyOptions: {
                 minify: true,
                 info: false,
