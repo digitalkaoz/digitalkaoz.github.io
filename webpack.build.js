@@ -1,7 +1,9 @@
 import webpack from 'webpack';
-import PurifyCssPlugin from 'purifycss-webpack-plugin';
+import PurifyCssPlugin from 'purifycss-webpack';
 import baseConfig from './webpack.base';
 import SWPrecacheWebpackPlugin from 'sw-precache-webpack-plugin';
+import glob from 'glob';
+import path from 'path';
 
 export default {
     ...baseConfig,
@@ -66,11 +68,8 @@ export default {
             return plugin;
         }),
         new PurifyCssPlugin({
-            basePath: __dirname,
-            paths: [
-                'js/**/*.jsx',
-                'js/*.jsx',
-            ],
+            paths: glob.sync(path.join(__dirname, '/js/**/*.jsx')),
+            minimize: true,
             purifyOptions: {
                 minify: true,
                 info: false,
