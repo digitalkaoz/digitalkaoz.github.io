@@ -74,8 +74,9 @@ export default {
             verbose: true,
             purifyOptions: {
                 minify: true,
-                info: false,
-                rejected: false
+                info: true,
+                rejected: false,
+                whitelist: ['medium-theme*']
             }
         }),
         new webpack.optimize.UglifyJsPlugin({
