@@ -36,7 +36,7 @@
     "purifycss-webpack": "^0.5.0",
     "react-svg-loader": "^2.0.0-alpha.0",
     "sass-loader": "^6.0.2",
-    "standard": "^10.0.0",
+    "standard": "^10.0.1",
     "style-loader": "^0.16.1",
     "sw-precache-webpack-plugin": "^0.9.1",
     "uglifyjs-webpack-plugin": "^0.4.1",
