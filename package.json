@@ -3,7 +3,7 @@
   "dependencies": {
     "devicon": "https://github.com/konpa/devicon/archive/master.tar.gz",
     "material-design-lite": "^1.3.0",
-    "react": "^15.5.3",
+    "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-github-cards": "^1.1.1",
     "react-headroom": "^2.1.4",
