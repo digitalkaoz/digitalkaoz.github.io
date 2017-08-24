@@ -34,7 +34,7 @@ References.propTypes = {
 
 References.defaultProps = {
   references: [
-    'php-ipfs',
+    'php-ipfs-api',
     'issues',
     'yuml-php',
     'versioneye-php',
