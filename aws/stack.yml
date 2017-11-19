@@ -18,8 +18,9 @@ Resources:
             Id: DIGITALKAOZ
             S3OriginConfig:
               #OriginAccessIdentity: "access-identity-digitalkaoz.net.s3.amazonaws.com"
-              #OriginAccessIdentity: "origin-access-identity/cloudfront/DIGITALKAOZ"
-              OriginAccessIdentity: ""
+              #OriginAccessIdentity: !Ref "S3AccessIdentity"
+              OriginAccessIdentity:
+                Fn::GetAtt: [ "S3AccessIdentity", "S3CanonicalUserId" ]
         Enabled: 'true'
         DefaultRootObject: index.html
         HttpVersion: http2
@@ -46,6 +47,12 @@ Resources:
         PriceClass: PriceClass_100
         ViewerCertificate:
           CloudFrontDefaultCertificate: 'true'
+
+  S3AccessIdentity:
+    Type: "AWS::CloudFront::CloudFrontOriginAccessIdentity"
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: "cf_to_s3"
 
 # s3
   WebBucket:
