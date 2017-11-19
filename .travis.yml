@@ -7,12 +7,12 @@ cache: yarn
 node_js:
   - '9'
 
-install: yarn --skip-integrity-check
 script: yarn build
 
 deploy:
   provider: s3
   access_key_id: AKIAIS5KE76AV4QS36OA
+  skip_cleanup: true
   secret_access_key:
     secure: TtZ14LVfOqLIgKp2bpy74SR92ieC89lrvse1D5HReIWmeIUI9AivHK9sQn3pc9NECfVQgD6lfGFlxVTBunCqHJEs8om2J+nVgV37Vgi+5cxzDVALw/f2p/me1VTCSdIMcGvgzzg36aDAZjzAkBckxf86bK6MYBPI1UhMAtJMnW8=
   bucket: digitalkaoz.net

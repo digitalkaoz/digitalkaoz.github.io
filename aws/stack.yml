@@ -17,10 +17,8 @@ Resources:
               Fn::Join: [ ".", [ !Ref "RootDomainName", "s3.amazonaws.com" ] ]
             Id: DIGITALKAOZ
             S3OriginConfig:
-              #OriginAccessIdentity: "access-identity-digitalkaoz.net.s3.amazonaws.com"
-              #OriginAccessIdentity: !Ref "S3AccessIdentity"
               OriginAccessIdentity:
-                Fn::GetAtt: [ "S3AccessIdentity", "S3CanonicalUserId" ]
+                Fn::Join: [ "", [ "origin-access-identity/cloudfront/", !Ref "S3AccessIdentity"] ]
         Enabled: 'true'
         DefaultRootObject: index.html
         HttpVersion: http2
@@ -47,12 +45,6 @@ Resources:
         PriceClass: PriceClass_100
         ViewerCertificate:
           CloudFrontDefaultCertificate: 'true'
-
-  S3AccessIdentity:
-    Type: "AWS::CloudFront::CloudFrontOriginAccessIdentity"
-    Properties:
-      CloudFrontOriginAccessIdentityConfig:
-        Comment: "cf_to_s3"
 
 # s3
   WebBucket:
@@ -86,6 +78,13 @@ Resources:
       #Tags:
       #  - digitalkaoz.net
 
+# security
+  S3AccessIdentity:
+    Type: "AWS::CloudFront::CloudFrontOriginAccessIdentity"
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: "cf_to_s3"
+
   CdnS3Policy:
     Type: "AWS::S3::BucketPolicy"
     Properties:
@@ -100,7 +99,9 @@ Resources:
             Resource:
               Fn::Join: [ "", ["arn:aws:s3:::", !Ref "WebBucket", "/*" ]]
             Principal:
-                AWS: "arn:aws:iam::455201159890:user/digitalkaoz" #TODO configurable
+                #AWS: "arn:aws:iam::455201159890:user/digitalkaoz" #TODO configurable
+                CanonicalUser:
+                  Fn::GetAtt: [ "S3AccessIdentity", "S3CanonicalUserId" ]
 
 # code pipeline
 #  Pipeline:
@@ -185,8 +186,7 @@ Resources:
 ##      Tags:
 ##        - Key: Key1
 ##          Value: Value1
-##name: digitalkaoz_net !!
-##role: code-build-digitalkaoz.net-service-role
+
 #
 #  ServiceRole:
 #    Type: "AWS::IAM::Role"
