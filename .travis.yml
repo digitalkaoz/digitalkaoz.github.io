@@ -10,7 +10,8 @@ node_js:
 script: yarn build
 
 before_deploy:
-#  - pip install awscli
+  - pip install --user awscli
+  - export PATH=$PATH:$HOME/.local/bin
 
 deploy:
   provider: s3
@@ -27,7 +28,5 @@ deploy:
     branch: development
 
 after_deploy:
-  # Allow `awscli` to make requests to CloudFront.
-  #- aws configure set preview.cloudfront true
-  # Invalidate every object in the targeted distribution.
-  #- aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+  - aws configure set preview.cloudfront true
+  - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
