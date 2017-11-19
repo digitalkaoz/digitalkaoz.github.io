@@ -9,6 +9,9 @@ node_js:
 
 script: yarn build
 
+before_deploy:
+  - pip install awscli
+
 deploy:
   provider: s3
   access_key_id: AKIAIS5KE76AV4QS36OA
@@ -21,3 +24,9 @@ deploy:
   on:
     repo: digitalkaoz/digitalkaoz.github.io
     branch: development
+
+after_deploy:
+  # Allow `awscli` to make requests to CloudFront.
+  #- aws configure set preview.cloudfront true
+  # Invalidate every object in the targeted distribution.
+  #- aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
