@@ -20,4 +20,4 @@ deploy:
   acl: bucket_owner_full_control
   on:
     repo: digitalkaoz/digitalkaoz.github.io
-    branch: master
+    branch: development

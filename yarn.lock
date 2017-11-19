@@ -1946,7 +1946,7 @@ detect-indent@^4.0.0:
 
 "devicon@https://github.com/konpa/devicon/archive/master.tar.gz":
   version "2.2.0"
-  resolved "https://github.com/konpa/devicon/archive/master.tar.gz#5cce66aef5b6728a906d643e54580e33c30a0ed5"
+  resolved "https://github.com/konpa/devicon/archive/master.tar.gz#0b0f82cc373d7db974240b2c27107332fcc6b9c3"
 
 diffie-hellman@^5.0.0:
   version "5.0.2"
