@@ -4,11 +4,16 @@ Parameters:
   RootDomainName:
     Description: Domain name for your website
     Type: String
-  CertArn:
-    Description: "Certificate ARN"
-    Type: String
 
 Resources:
+
+  Cert:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: !Ref "RootDomainName"
+      DomainValidationOptions:
+      - DomainName: !Ref "RootDomainName"
+        ValidationDomain: !Ref "RootDomainName"
 
 # cloudfront
   Cdn:
@@ -17,7 +22,7 @@ Resources:
       DistributionConfig:
         Origins:
           - DomainName:
-              Fn::Join: [ ".", [ !Ref "RootDomainName", "s3.amazonaws.com" ] ]
+              Fn::GetAtt: [ "WebBucket", "DomainName" ]
             Id: DIGITALKAOZ
             S3OriginConfig:
               OriginAccessIdentity:
@@ -30,7 +35,7 @@ Resources:
         #  Bucket: !Ref "LogBucket"
         #  Prefix: cf
         Aliases:
-          - Fn::Join: [ ".", ["beta", !Ref "RootDomainName" ] ]
+          - !Ref "RootDomainName"
         DefaultCacheBehavior:
           AllowedMethods:
             - GET
@@ -44,7 +49,7 @@ Resources:
           ViewerProtocolPolicy: redirect-to-https
         PriceClass: PriceClass_100
         ViewerCertificate:
-          AcmCertificateArn: !Ref "CertArn"
+          AcmCertificateArn: !Ref "Cert"
           SslSupportMethod: sni-only
 
 # security
@@ -75,19 +80,24 @@ Resources:
   WebBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Ref RootDomainName
+      BucketName: !Ref "RootDomainName"
       AccessControl: BucketOwnerFullControl
       #LoggingConfiguration:
       #  DestinationBucketName: !Ref 'LogBucket'
       #  LogFilePrefix: s3
-      WebsiteConfiguration:
-        IndexDocument: index.html
-        ErrorDocument: 404.html
+      #WebsiteConfiguration:
+      #  IndexDocument: index.html
+      #  ErrorDocument: 404.html
 
   LogBucket:
     Type: AWS::S3::Bucket
     Properties:
+      BucketName:
+        Fn::Join: [ ".", ["logs", !Ref "RootDomainName" ] ]
       AccessControl: LogDeliveryWrite
+
+
+
 
   #BuildBucket:
   #  Type: AWS::S3::Bucket
