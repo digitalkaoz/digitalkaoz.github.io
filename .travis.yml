@@ -7,9 +7,6 @@ cache: yarn
 node_js:
   - '9'
 
-before_script:
-  - yarn --skip-integrity-check install
-
 script: yarn build
 
 deploy:

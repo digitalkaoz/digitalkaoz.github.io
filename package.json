@@ -1,4 +1,6 @@
 {
+  "name": "digitalkaoz.net",
+  "version": "0.1",
   "private": true,
   "dependencies": {
     "devicon": "https://github.com/konpa/devicon/archive/master.tar.gz",
