@@ -10,7 +10,7 @@ node_js:
 script: yarn build
 
 before_deploy:
-  - pip install awscli
+#  - pip install awscli
 
 deploy:
   provider: s3
@@ -21,6 +21,7 @@ deploy:
   bucket: digitalkaoz.net
   local-dir: build
   acl: bucket_owner_full_control
+  cache_control: "max-age=21600"
   on:
     repo: digitalkaoz/digitalkaoz.github.io
     branch: development

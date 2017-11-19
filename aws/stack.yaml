@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Parameters:
+  RootDomainName:
+    Description: Domain name for your website
+    Type: String
+
+Resources:
+
+  CertStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      Parameters:
+        RootDomainName: !Ref "RootDomainName"
+      TemplateURL: https://s3-eu-west-1.amazonaws.com/learn-cloudformation/lab7-nested-stacks/ec2-stack.json
+      TimeoutInMinutes: '5'
+
+  CFS3Stack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://s3-eu-west-1.amazonaws.com/learn-cloudformation/lab7-nested-stacks/s3-stack.json
+      TimeoutInMinutes: '2'
+      Parameters:
+        CertArn: !Sub ${CertStack.Outputs.CertArn}

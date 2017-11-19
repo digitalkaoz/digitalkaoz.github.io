@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+Parameters:
+  RootDomainName:
+    Description: Domain name for your website
+    Type: String
+
+Resources:
+
+  Cert:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName:
+        Fn::Join: [ ".", ["beta", !Ref "RootDomainName" ] ]
+      DomainValidationOptions:
+      - DomainName:
+          Fn::Join: [ ".", ["beta", !Ref "RootDomainName" ] ]
+        ValidationDomain: !Ref "RootDomainName"
+
+Outputs:
+  CertArn:
+    Value: !Ref "Cert"
+    Description: "the SSL Certificate"

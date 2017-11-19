@@ -4,6 +4,9 @@ Parameters:
   RootDomainName:
     Description: Domain name for your website
     Type: String
+  CertArn:
+    Description: "Certificate ARN"
+    Type: String
 
 Resources:
 
@@ -38,45 +41,11 @@ Resources:
             QueryString: 'false'
             Cookies:
               Forward: none
-          #TrustedSigners:
-          #- 1234567890EX
-          #- 1234567891EX
           ViewerProtocolPolicy: redirect-to-https
         PriceClass: PriceClass_100
         ViewerCertificate:
-          CloudFrontDefaultCertificate: 'true'
-
-# s3
-  WebBucket:
-    Type: AWS::S3::Bucket
-    Properties:
-      BucketName: !Ref RootDomainName
-      AccessControl: BucketOwnerFullControl
-      #LoggingConfiguration:
-      #  DestinationBucketName: !Ref 'LogBucket'
-      #  LogFilePrefix: s3
-      WebsiteConfiguration:
-        IndexDocument: index.html
-        ErrorDocument: 404.html
-      #Tags:
-      #  - digitalkaoz.net
-
-  BuildBucket:
-    Type: AWS::S3::Bucket
-    Properties:
-      AccessControl: BucketOwnerFullControl
-      #LoggingConfiguration:
-      #  DestinationBucketName: !Ref 'LogBucket'
-      #  LogFilePrefix: s3
-      #Tags:
-      #  - digitalkaoz.net
-
-  LogBucket:
-    Type: AWS::S3::Bucket
-    Properties:
-      AccessControl: LogDeliveryWrite
-      #Tags:
-      #  - digitalkaoz.net
+          AcmCertificateArn: !Ref "CertArn"
+          SslSupportMethod: sni-only
 
 # security
   S3AccessIdentity:
@@ -99,9 +68,31 @@ Resources:
             Resource:
               Fn::Join: [ "", ["arn:aws:s3:::", !Ref "WebBucket", "/*" ]]
             Principal:
-                #AWS: "arn:aws:iam::455201159890:user/digitalkaoz" #TODO configurable
                 CanonicalUser:
                   Fn::GetAtt: [ "S3AccessIdentity", "S3CanonicalUserId" ]
+
+# s3
+  WebBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref RootDomainName
+      AccessControl: BucketOwnerFullControl
+      #LoggingConfiguration:
+      #  DestinationBucketName: !Ref 'LogBucket'
+      #  LogFilePrefix: s3
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: 404.html
+
+  LogBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: LogDeliveryWrite
+
+  #BuildBucket:
+  #  Type: AWS::S3::Bucket
+  #  Properties:
+  #    AccessControl: BucketOwnerFullControl
 
 # code pipeline
 #  Pipeline:
