@@ -19,7 +19,7 @@ deploy:
   skip_cleanup: true
   secret_access_key:
     secure: TtZ14LVfOqLIgKp2bpy74SR92ieC89lrvse1D5HReIWmeIUI9AivHK9sQn3pc9NECfVQgD6lfGFlxVTBunCqHJEs8om2J+nVgV37Vgi+5cxzDVALw/f2p/me1VTCSdIMcGvgzzg36aDAZjzAkBckxf86bK6MYBPI1UhMAtJMnW8=
-  bucket: digitalkaoz.net
+  bucket: web.digitalkaoz.net
   local-dir: build
   acl: bucket_owner_full_control
   cache_control: "max-age=21600"
