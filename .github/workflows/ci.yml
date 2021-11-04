@@ -1,0 +1,66 @@
+name: website-build
+
+on:
+  push:
+    branches: [ development ]
+  pull_request:
+    branches: [ development ]
+
+jobs:
+  node:
+    runs-on: ubuntu-latest
+    steps:
+    #setup
+    - name: Get yarn cache directory path
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+    - uses: actions/checkout@v2
+    - name: Cache npm
+      uses: actions/cache@v2
+      id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '13.x'
+    - name: Get node dependencies
+      run: yarn
+
+    #build
+    - name: Build app
+      run: yarn build
+
+    - name: Upload build
+      uses: actions/upload-artifact@v1
+      with:
+        name: build
+        path: ./build
+
+  deploy_prod:
+    needs: [node]
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-central-1
+      - name: Download built App
+        uses: actions/download-artifact@v1
+        with:
+          name: build
+          path: .
+      - name: Deploy
+        uses: reggionick/s3-deploy@v2
+        with:
+          folder: .
+          bucket: ${{ secrets.PROD_S3 }}
+          bucket-region: eu-central-1
+          dist-id: ${{ secrets.PROD_CF }}
+          invalidation: /
+          #delete-removed: true
