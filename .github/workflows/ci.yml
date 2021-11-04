@@ -14,6 +14,12 @@ jobs:
     - name: Get yarn cache directory path
       id: yarn-cache-dir-path
       run: echo "::set-output name=dir::$(yarn cache dir)"
+    - name: install linux dependencies
+      run: |
+        sudo apt-get install libpng-dev
+        sudo add-apt-repository ppa:linuxuprising/libpng12
+        sudo apt update
+        sudo apt install libpng12-0
     - uses: actions/checkout@v2
     - name: Cache npm
       uses: actions/cache@v2
@@ -41,7 +47,7 @@ jobs:
 
   deploy_prod:
     needs: [node]
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/development'
     runs-on: ubuntu-latest
     steps:
       - name: Configure AWS credentials
