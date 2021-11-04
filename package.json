@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "devicon": "https://github.com/konpa/devicon/archive/master.tar.gz",
+    "devicon": "^2.14.0",
     "material-design-lite": "^1.3.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
@@ -33,10 +33,10 @@
     "html-webpack-harddisk-plugin": "^0.1.0",
     "html-webpack-plugin": "^2.28.0",
     "image-webpack-loader": "^3.3.0",
-    "node-sass": "^4.5.2",
+    "node-sass": "^6.0.1",
     "preload-webpack-plugin": "^1.2.2",
     "purifycss-webpack": "^0.6.1",
-    "react-svg-loader": "^2.0.0-alpha.0",
+    "react-svg-loader": "^3.0.3",
     "sass-loader": "^6.0.2",
     "standard": "^10.0.2",
     "style-loader": "^0.17.0",
@@ -52,7 +52,7 @@
     "cs": "standard --fix js/**/*.jsx -v --parser babel-eslint",
     "build": "rm -rf build/*.* && babel-node ./node_modules/.bin/webpack --colors --config=webpack.build.js  --progress",
     "deploy-docker": "docker build -t \"digitalkaoz.net\" . -f docker/Dockerfile && docker tag \"digitalkaoz.net\" digitalkaoz/digitalkaoz.net:$(git rev-parse --verify HEAD) && docker tag \"digitalkaoz.net\" digitalkaoz/digitalkaoz.net:latest && docker push digitalkaoz/digitalkaoz.net:$(git rev-parse --verify HEAD) && docker push digitalkaoz/digitalkaoz.net:latest",
-    "deploy" : "npm run aws:stack",
-    "aws:stack" : "aws cloudformation deploy --template-file aws/stack.yml --stack-name digitalkaoz --capabilities CAPABILITY_IAM --parameter-overrides RootDomainName=digitalkaoz.net"
+    "deploy": "npm run aws:stack",
+    "aws:stack": "aws cloudformation deploy --template-file aws/stack.yml --stack-name digitalkaoz --capabilities CAPABILITY_IAM --parameter-overrides RootDomainName=digitalkaoz.net"
   }
 }

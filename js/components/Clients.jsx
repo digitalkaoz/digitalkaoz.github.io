@@ -17,6 +17,12 @@ import silpion from './../../images/references/silpion.png'
 import sinnerschrader from './../../images/references/sinnerschrader.png'
 import tchibo from './../../images/references/tchibo.png'
 import truventuro from './../../images/references/truventuro.png'
+import burda from './../../images/references/factfield-black.png'
+import lsp from './../../images/references/nxtstatista.png'
+import noted from './../../images/references/noted-logo.png'
+import innogames from './../../images/references/innogames.png'
+import cgm from './../../images/references/cgm.png'
+import appmotion from './../../images/references/appmotion.png'
 
 export default class Clients extends React.Component {
   static defaultProps = {
@@ -35,7 +41,13 @@ export default class Clients extends React.Component {
             {img: silpion, url: 'http://www.silpion.de'},
             {img: sinnerschrader, url: 'https://sinnerschrader.com'},
             {img: truventuro, url: 'http://www.truventuro.de'},
-            {img: tchibo, url: 'https://www.tchibo.de'}
+            { img: tchibo, url: 'https://www.tchibo.de' },
+            { img: burda, url: 'https://factfield.de' },
+      { img: noted, url: 'https://www.noted.com/' },
+            {img: innogames, url: 'https://www.innogames.com/'},
+      { img: lsp, url: 'https://www.nxt.statista.com/' },
+      { img: cgm, url: 'https://www.cgm.com/' },
+            {img: appmotion, url: 'https://www.appmotion.de/'}
     ]
   };
 

@@ -40,7 +40,12 @@ References.defaultProps = {
     'versioneye-php',
     'xml-filter',
     'digitalkaoz.github.io',
-    'time-calc'
+    'time-calc',
+    'rechentrainer',
+    'aws-log-shipper',
+    'py_human_name_compare',
+    'flutter-timesheet',
+    'preload-polyfill'
   ]
 }
 
