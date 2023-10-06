@@ -23,6 +23,8 @@ import noted from './../../images/references/noted-logo.png'
 import innogames from './../../images/references/innogames.png'
 import cgm from './../../images/references/cgm.png'
 import appmotion from './../../images/references/appmotion.png'
+import dina from './../../images/references/dina.png'
+import jh from './../../images/references/jh.png'
 
 export default class Clients extends React.Component {
   static defaultProps = {
@@ -47,7 +49,9 @@ export default class Clients extends React.Component {
             {img: innogames, url: 'https://www.innogames.com/'},
       { img: lsp, url: 'https://www.nxt.statista.com/' },
       { img: cgm, url: 'https://www.cgm.com/' },
-            {img: appmotion, url: 'https://www.appmotion.de/'}
+            {img: appmotion, url: 'https://www.appmotion.de/'},
+		{img: dina, url: 'https://www.dina.de/'},
+		{img: jh, url: 'https://www.jungheinrich.de/'}
     ]
   };
 

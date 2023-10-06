@@ -47,7 +47,7 @@ References.defaultProps = {
     'flutter-timesheet',
     'preload-polyfill',
     'exif-image-sorter',
-    'terrarium-tf/-cli',
+    'terrarium-tf/cli',
   ]
 }
 
