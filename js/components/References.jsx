@@ -45,7 +45,9 @@ References.defaultProps = {
     'aws-log-shipper',
     'py_human_name_compare',
     'flutter-timesheet',
-    'preload-polyfill'
+    'preload-polyfill',
+    'exif-image-sorter',
+    'terrarium-tf/-cli',
   ]
 }
 

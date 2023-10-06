@@ -19,6 +19,7 @@ import typescript from './../../node_modules/devicon/icons/typescript/typescript
 import python from './../../node_modules/devicon/icons/python/python-plain.svg'
 import flutter from './../../node_modules/devicon/icons/flutter/flutter-plain.svg'
 import vue from './../../node_modules/devicon/icons/vuejs/vuejs-original.svg'
+import go from './../../node_modules/devicon/icons/go/go-original.svg'
 import es from './../../images/elasticsearch.svg'
 
 const Tools = ({tools}) => {
@@ -26,7 +27,7 @@ const Tools = ({tools}) => {
     <h2 className='mdl-cell mdl-cell--2-offset-desktop mdl-cell--8-col'>Tools</h2>
     <h4 className='mdl-cell mdl-cell--2-offset-desktop mdl-cell--8-col'>some of the Tools i use on a regular
       base.</h4>
-    
+
     <div className='mdl-cell mdl-cell--2-offset-desktop mdl-cell--8-col'>
       { tools.map((t) => <a
         className='mdl-button mdl-js-button mdl-button--raised mdl-button--fab mdl-js-ripple-effect' key={t.url}
@@ -47,6 +48,7 @@ Tools.defaultProps = {
         {icon: java, url: 'https://www.java.com'},
         {icon: nodejs, url: 'https://nodejs.org/en/'},
         {icon: python, url: 'https://www.python.org/', name: 'python'},
+	  	{icon: go, url: 'https://go.dev/', name: 'golang'},
 
         {icon: aws, url: 'https://aws.amazon.com'},
         {icon: docker, url: 'https://www.docker.com/'},
@@ -61,7 +63,7 @@ Tools.defaultProps = {
 
         {icon: mysql, url: 'https://www.mysql.com/'},
         {icon: redis, url: 'https://redis.io/'},
-        { icon: es, url: 'https://www.elastic.co/', name: 'es' },
+        {icon: es, url: 'https://www.elastic.co/', name: 'es'},
   ]
 }
 
