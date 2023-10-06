@@ -24,7 +24,7 @@ const Header = () => {
 
     <h1 className='mdl-typography--text-center'>Robert Schönthal</h1>
     <img src={require('./../../images/me.png')} className='me-head' />
-    <h4 className='mdl-typography--text-center'>full stack software engineer &amp; architect with <Icon name='heart' icon={heart} /> for PHP, Javascript &amp; Testing</h4>
+    <h4 className='mdl-typography--text-center'>full stack software engineer &amp; architect with <Icon name='heart' icon={heart} /> for Go, Python, AWS &amp; Testing</h4>
   </header>
 }
 
