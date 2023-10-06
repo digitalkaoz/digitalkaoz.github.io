@@ -20,6 +20,7 @@ import python from './../../node_modules/devicon/icons/python/python-plain.svg'
 import flutter from './../../node_modules/devicon/icons/flutter/flutter-plain.svg'
 import vue from './../../node_modules/devicon/icons/vuejs/vuejs-original.svg'
 import go from './../../node_modules/devicon/icons/go/go-original.svg'
+import fastapi from './../../node_modules/devicon/icons/fastapi/fastapi-original.svg'
 import es from './../../images/elasticsearch.svg'
 
 const Tools = ({tools}) => {
@@ -60,6 +61,7 @@ Tools.defaultProps = {
         {icon: symfony, url: 'http://symfony.com/', name: 'symfony-original'},
         { icon: flutter, url: 'https://flutter.dev/', name: 'flutter' },
         { icon: vue, url: 'https://vuejs.org/', name: 'vue' },
+	    { icon: fastapi, url: 'https://fastapi.tiangolo.com/', name: 'fastapi' },
 
         {icon: mysql, url: 'https://www.mysql.com/'},
         {icon: redis, url: 'https://redis.io/'},
