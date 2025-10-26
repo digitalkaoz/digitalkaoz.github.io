@@ -1,0 +1,14 @@
+@import 'variables';
+
+#references {
+  .repo {
+    > div {
+      background: transparent !important;
+      border-color: $color-background !important;
+
+      .text {
+        color: $color-background !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+@import './variables';
+
+header {
+  .mdl-layout__header-row .mdl-navigation__link {
+    color: black;
+  }
+
+  .mdl-typography--text-center {
+    color: black;
+  }
+
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .me-head {
+    float: none;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    display: block;
+    border: 3px solid #000;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+
+  .icon-heart {
+    width: 30px;
+    height: 30px;
+  }
+
+  svg.icon {
+    fill: black;
+  }
+
+  .mdl-navigation {
+    background-color: white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    .mdl-navigation__link {
+      &:hover {
+        color: $color-accent;
+      }
+    }
+  }
+
+  .headroom {
+    z-index: 2 !important;
+  }
+}

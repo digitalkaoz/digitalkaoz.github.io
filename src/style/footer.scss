@@ -1,0 +1,31 @@
+@import './variables';
+
+footer {
+  svg {
+    &.icon {
+      width: 30px;
+      height: 30px;
+    }
+    &.icon:hover {
+      fill: $color-accent;
+    }
+    &.icon-github {
+      &:hover {
+        g {
+          fill: $color-accent;
+        }
+      }
+    }
+
+    &.icon-bluesky {
+      padding-top: 4px;
+      path {
+        transform: scale(0.05);
+      }
+    }
+  }
+
+  &.mdl-mini-footer .mdl-logo {
+    line-height: 55px;
+  }
+}
